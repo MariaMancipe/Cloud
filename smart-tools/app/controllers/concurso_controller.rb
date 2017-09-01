@@ -1,0 +1,2 @@
+class ConcursoController < ApplicationController
+end
