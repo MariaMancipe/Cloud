@@ -1,17 +1,17 @@
 # Routes
 # Usuario
-  * /usuario/:idUsuario -- GET
-  * /usuario -- POST
+  * /usuarios/:idUsuario -- GET
+  * /usuarios -- POST
 # Concurso
-  * /concurso/:idConcurso --GET
-  * /concurso --GET
-  * /concurso -- POST
-  * /concurso/:idConcurso -- UPDATE
-  * /concurso/:idConcurso -- DELETE
+  * /concursos/:idConcurso --GET
+  * /concursos --GET
+  * /concursos -- POST
+  * /concursos/:idConcurso -- UPDATE
+  * /concursos/:idConcurso -- DELETE
 # Video
-  * /video/:idVideo -- GET
-  * /video/byConcurso/:idConcurso --GET
-  * /video -- GET
-  * /video/:idConcurso/:idVideo -- POST
-  * /video/:codec -- GET
-  * /video/:estado -- GET 
+  * /videos/:idvideo -- GET
+  * /videos/byConcurso/:idConcurso --GET
+  * /videos -- GET
+  * /videos/:idConcurso/:idvideo -- POST
+  * /videos/:codec -- GET
+  * /videos/:estado -- GET 
