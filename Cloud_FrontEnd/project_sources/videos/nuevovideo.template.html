@@ -1,0 +1,16 @@
+<div ng-controller = "VideosController" class="popUpForm">
+  <form name="nuevoVideoForm" enctype="multipart/form-data" method="post" >
+    <div>
+      <h3 class="formHeader"> Sube un nuevo video</h3>
+        <label class="formLabel">Nombre</label><br>
+        <input class="loginForm" name="nombre" ng-model="vm.nuevovideo.nombre" md-autofocus required /><br>
+        <label class="formLabel">Apellido</label><br>
+        <input class="loginForm" name="apellido" ng-model="vm.nuevovideo.apellido" md-autofocus required /><br>
+        <label class="formLabel">Video</label><br>
+        <input class="loginForm" id="video" type="file" accept="video/*" name="video" ng-model="vm.nuevovideo.video" md-autofocus required /><br>
+        <label class="formLabel">Mensaje</label><br>
+        <input class="loginForm" name="mensaje" ng-model="vm.nuevovideo.mensaje" required /><br>
+      <button class="formButton" type="submit" ng-click="vm.subirvideo(vm.nuevovideo);" >Subir Video</button>
+    </div>
+  </form>
+</div>

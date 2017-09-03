@@ -17,6 +17,7 @@
         <th ><p>Concursos</p></th>
           <th> Edit</th>
           <th> Remove</th>
+          <th> <button class="tableButton" ng-click="vm.nuevoConcurso()">+</button></th>
         </tr>
       </thead>
 
@@ -25,13 +26,13 @@
         <tr ng-repeat="item in vm.concursos" ng-value="{{item}}" class="move">
 
           <td>
-            <href ng-click="vm.irAVideos(item.id);" style="padding:30px">{{item.name}}</href>
+            <href ng-click="vm.irAVideos(item);" style="padding:30px">{{item.nombre}}</href>
           </td>
           <td>
-            <a ng-click="vm.editarConcurso(item.id);">Edit</a>
+            <a ng-click="vm.editarConcurso(item);">Edit</a>
           </td>
           <td>
-            <a ng-click="vm.removerConcurso(item.id);">Remove</a>
+            <a ng-click="vm.removerConcurso(item);">Remove</a>
           </td>
 
         </tr>

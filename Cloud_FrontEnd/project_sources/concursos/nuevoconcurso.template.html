@@ -1,0 +1,20 @@
+<div ng-controller = "ConcursosController" class="popUpForm">
+  <form name="newConcursoForm" enctype="multipart/form-data" method="post" >
+    <div>
+      <h3 class="formHeader"> Crear nuevo concurso</h3>
+        <label class="formLabel">Nombre</label><br>
+        <input class="loginForm" name="nombre" ng-model="vm.nuevoconcurso.nombre" md-autofocus required /><br>
+        <label class="formLabel">URL</label><br>
+        <input class="loginForm" name="url" ng-model="vm.nuevoconcurso.url" required /><br>
+        <label class="formLabel">Imagen</label><br>
+        <input class="loginForm" id="file" type="file" accept="image/*" name="imagen" ng-model="vm.nuevoconcurso.imagen" md-autofocus required /><br>
+        <label class="formLabel">Fecha de inicio</label><br>
+        <input class="loginForm" type="date" name="fechainicio" ng-model="vm.nuevoconcurso.fechainicio" required /><br>
+        <label class="formLabel">Fecha de fin</label><br>
+        <input class="loginForm" type="date" name="fechafin" ng-model="vm.nuevoconcurso.fechafin" required /><br>
+        <label class="formLabel">Descripcion del premio</label><br>
+        <input class="loginForm" name="url" ng-model="vm.nuevoconcurso.descripcion" required /><br>
+      <button class="formButton" type="submit" ng-click="vm.crearconcurso(vm.nuevoconcurso);" >Crear concurso</button>
+    </div>
+  </form>
+</div>

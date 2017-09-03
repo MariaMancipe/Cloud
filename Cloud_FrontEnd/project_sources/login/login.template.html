@@ -1,7 +1,26 @@
-<div ng-controller = "MainController">
-  <form name="loginForm" ng-submit="dialog.login()">
-    
-    <p> Holiwi, acá va todo el form para el login o el registro</p>
-      <button  type="submit" ng-disabled="loginForm.$invalid" >Login</button>
+<div ng-controller = "MainController" class="popUpForm">
+  <form name="loginForm" >
+    <div>
+      <h3 class="formHeader"> Inicia sesión</h3>
+        <label class="formLabel">E-mail</label><br>
+        <input class="loginForm" name="nombreusuario" ng-model="dialog.nombreusuario" md-autofocus required /><br>
+        <label class="formLabel">Contraseña</label><br>
+        <input class="loginForm" type="password" name="password" ng-model="dialog.password" required /><br>
+      <button class="formButton" type="submit" ng-disabled="loginForm.$invalid" ng-click="vm.login()" >Login</button>
+    </div>
+    <div>
+      <h3 class="formHeader"> O regístrate...</h3>
+        <label class="formLabel">Nombres</label><br>
+        <input class="loginForm" name="nombreusuario" ng-model="dialog.nombreusuario" md-autofocus required /><br>
+        <label class="formLabel">Apellidos</label><br>
+        <input class="loginForm" name="apellidousuario" ng-model="dialog.apellidousuario" md-autofocus required /><br>
+        <label class="formLabel">E-mail</label><br>
+        <input class="loginForm" name="email" ng-model="dialog.email" md-autofocus required /><br>
+        <label class="formLabel">Introduce tu contraseña</label><br>
+        <input class="loginForm" type="password" name="password" ng-model="dialog.password" required /><br>
+        <label class="formLabel">Confrima tu contraseña</label><br>
+        <input class="loginForm" type="password" name="confirmpassword" ng-model="dialog.confirmpassword" required /><br>
+      <button class="formButton" type="submit" ng-disabled="registerForm.$invalid" ng-click="vm.register()" >Regístrate</button>
+    </div>
   </form>
 </div>
