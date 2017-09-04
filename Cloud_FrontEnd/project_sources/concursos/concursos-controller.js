@@ -33,10 +33,9 @@
 				}
 
 				r.readAsBinaryString(f);
-				console.log(f);
 
 				//Envia a registro el concurso
-				ConcursosFactory.postConcursos(item);
+				ConcursosFactory.postConcursos(item, f);
 
 				//Actualiza la lusta de concursos
 				vm.concursos = ConcursosFactory.getConcursos();

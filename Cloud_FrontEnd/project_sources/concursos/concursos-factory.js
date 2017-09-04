@@ -56,7 +56,36 @@
 
 	        return reponse;
 		}
-		function postConcursos(concurso){
+		function postConcursos(concurso, file){
+			var fd = new FormData();
+		    //Take the first selected file
+		    //fd.append("file", files[0]);
+		    fd.append("file", file);
+
+		    console.log(fd);
+		    
+		    //File upload
+		    $http.post(path_to_service+'UploadURL', fd, {
+		        withCredentials: true,
+		        headers: {'Content-Type': undefined },
+		        transformRequest: angular.identity
+		    }).then(function successCallback(response) {
+		    	console.log('uploaded')
+			  }, function errorCallback(response) {
+		    	console.log('Not uploaded')
+			  });
+
+		    //Registro concurso
+		    $http.post(path_to_service+'UploadURL', item, {
+		        withCredentials: true,
+		        headers: {'Content-Type': undefined },
+		        transformRequest: angular.identity
+		    }).then(function successCallback(response) {
+		    	console.log('uploaded')
+			  }, function errorCallback(response) {
+		    	console.log('Not uploaded')
+			  });
+
 			var cReponse = {};
 
 			cReponse.nombre = concurso.nombre;
