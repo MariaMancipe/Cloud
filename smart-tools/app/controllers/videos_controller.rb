@@ -2,6 +2,12 @@ class VideosController < ApplicationController
   before_action :set_concurso
   before_action :set_concurso_video, only: [:show, :update, :destroy]
 
+  # GET /videos
+  def all
+    @videos = Video.all
+    json_response(@videos)
+  end
+
   # GET /concursos/:concurso_id/videos
   def index
     json_response(@concurso.videos)
