@@ -47,8 +47,8 @@
       <file leaf-file-name="video_converter.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/video_converter.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+            <state relative-caret-position="231">
+              <caret line="14" column="99" lean-forward="false" selection-start-line="14" selection-start-column="99" selection-end-line="14" selection-end-column="99" />
               <folding />
             </state>
           </provider>
@@ -190,6 +190,23 @@
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="tasks" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="smart-tools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart-tools" type="462c0819:PsiDirectoryNode" />
+              <item name="video" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart-tools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart-tools" type="462c0819:PsiDirectoryNode" />
+              <item name="video" type="462c0819:PsiDirectoryNode" />
+              <item name="original" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smart-tools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smart-tools" type="462c0819:PsiDirectoryNode" />
+              <item name="video" type="462c0819:PsiDirectoryNode" />
+              <item name="upload" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -201,6 +218,11 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Q551\Universidad\Cloud\Cloud\smart-tools\video\original" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -315,12 +337,12 @@
       <option name="presentableId" value="Default" />
       <updated>1504542575350</updated>
       <workItem from="1504542577191" duration="8002000" />
-      <workItem from="1504554667612" duration="4547000" />
+      <workItem from="1504554667612" duration="5281000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12549000" />
+    <option name="totallyTimeSpent" value="13283000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -564,8 +586,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/video_converter.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+        <state relative-caret-position="231">
+          <caret line="14" column="99" lean-forward="false" selection-start-line="14" selection-start-column="99" selection-end-line="14" selection-end-column="99" />
           <folding />
         </state>
       </provider>
