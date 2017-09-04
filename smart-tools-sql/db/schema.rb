@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170903041534) do
+ActiveRecord::Schema.define(version: 20170904024717) do
 
   create_table "concursos", force: :cascade do |t|
     t.string "nombre"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170903041534) do
     t.integer "concurso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "original"
     t.index ["concurso_id"], name: "index_videos_on_concurso_id"
   end
 
