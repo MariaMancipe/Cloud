@@ -29,10 +29,10 @@
             <a ng-href="#!/videos/{{item.nombre}}">{{item.nombre}}</a>
           </td>
           <td>
-            <a ng-click="vm.editarConcurso(item);">Edit</a>
+            <button class="tableButton-small" ng-click="vm.editarConcurso(item);">Edit</button>
           </td>
           <td>
-            <a ng-click="vm.removerConcurso(item);">Remove</a>
+            <button class="tableButton-small" ng-click="vm.removerConcurso(item);">Remove</button>
           </td>
 
         </tr>

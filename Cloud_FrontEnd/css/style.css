@@ -399,6 +399,20 @@ input[type="file"] {
     border-radius: 25px;
     height: 100%;
 }
+.tableButton-small{
+	display:block;
+	margin: auto;
+	width:50%;
+	background: #DDD;
+	display:block;
+	color: gray;
+	font-size: 12px;
+    font-style: bold;
+	font-family: Verdana;
+    border: 2px solid white;
+    border-radius: 25px;
+    height:80%;
+}
 
 .popUpForm{
 	padding:30px;
