@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="279f37f7-4d8a-4454-9216-ef36ef5afb2d" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/video/upload/1 2 3 4 Get On The Dance Floor-Song Lyrics.mov" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/concerns/exception_handler.rb" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/concerns/response.rb" />
@@ -331,12 +332,12 @@
       <option name="presentableId" value="Default" />
       <updated>1504542575350</updated>
       <workItem from="1504542577191" duration="8002000" />
-      <workItem from="1504554667612" duration="5994000" />
+      <workItem from="1504554667612" duration="6274000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13996000" />
+    <option name="totallyTimeSpent" value="14276000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
