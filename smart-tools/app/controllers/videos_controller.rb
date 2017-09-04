@@ -2,17 +2,23 @@ class VideosController < ApplicationController
   before_action :set_concurso
   before_action :set_concurso_video, only: [:show, :update, :destroy]
 
-  # GET /concursos/:concurso_id/videos
+  # GET /videos
+  def all
+    @videos = Video.all
+    json_response(@videos)
+  end
+
+  # GET /videos/byConcurso/:concurso_id
   def index
     json_response(@concurso.videos)
   end
 
-  # GET /concursos/:concurso_id/videos/:id
+  # GET /videos/:id
   def show
     json_response(@video)
   end
 
-  # POST /concursos/:concurso_id/videos
+  # POST /videos/:id/concurso/:concurso_id
   def create
     @concurso.videos.create!(video_params)
     json_response(@concurso, :created)
@@ -24,6 +30,19 @@ class VideosController < ApplicationController
     head :no_content
   end
 
+  #GET /videos/codec/:codec
+  def codec
+    search_codec
+    json_response(@videos_codec)
+  end
+
+  #GET /videos/estado/:estado
+  def estado
+    search_estado
+    json_response(@videos_estado)
+  end
+
+
   private
 
   def video_params
@@ -32,6 +51,14 @@ class VideosController < ApplicationController
 
   def set_concurso
     @concurso = Todo.find(params[:concurso_id])
+  end
+
+  def search_codec
+    @videos_codec = Video.find(params[:codec])
+  end
+
+  def search_estado
+    @videos_estado = Video.find(params[:estado])
   end
 
   def set_concurso_video

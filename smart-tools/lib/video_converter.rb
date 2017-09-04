@@ -11,7 +11,7 @@ def convert_to_mp4(path)
   converted = "./video/converted/"
   new_path = File.basename(path)
   new_path = converted+ new_path[0,new_path.length-4]
-  movie.transcode("#{new_path}.mp4", %w(-acodec aac -vcodec h264 -strict -2))
+  movie.transcode("#{new_path}.mp4", %w(-acodec aac -vcodec h264 -strict -2 threads 3 threads 3))
   move_upload_to_original(path)
 end
 
