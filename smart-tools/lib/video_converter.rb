@@ -26,7 +26,7 @@ def search_files
   inicio = Time.now
   Dir.entries(upload).select {|f| convert_to_mp4(upload+f) unless File.directory?(f)}
   fin = Time.now
-  puts "Miliseconds used to convert 5 video #{(fin-inicio)*1000} with 5 threads"
+  puts "Miliseconds used to convert 5 video #{(fin-inicio)*1000} with 1 threads"
 
   puts "search files"
   # convert_to_mp4(path)
