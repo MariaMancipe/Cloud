@@ -4,8 +4,6 @@
 		.controller( 'MainController',['$scope', '$uibModal',  function($scope, $uibModal){
 
 			$scope.open = function () {
-				console.log('opening pop up');
-
 				var modalInstance = $uibModal.open({
 					templateUrl: 'project_sources/login/login.template.html',
 				});
@@ -60,7 +58,7 @@
 	            resolve: {
 	            }
 	        })
-	        .when('/videos', {
+	        .when("/videos/:nombre", {
 	            templateUrl: '/project_sources/videos/videos.view.html',
 	            controller: 'VideosController',
 	            controllerAs: 'vm',

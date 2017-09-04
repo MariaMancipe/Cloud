@@ -1,26 +1,28 @@
-<div ng-controller = "MainController" class="popUpForm">
+<div ng-controller = "LoginController as vm" class="popUpForm">
   <form name="loginForm" >
     <div>
       <h3 class="formHeader"> Inicia sesión</h3>
         <label class="formLabel">E-mail</label><br>
-        <input class="loginForm" name="nombreusuario" ng-model="dialog.nombreusuario" md-autofocus required /><br>
+        <input class="loginForm" name="nombreusuario" ng-model="vm.nombreusuario" md-autofocus required /><br>
         <label class="formLabel">Contraseña</label><br>
-        <input class="loginForm" type="password" name="password" ng-model="dialog.password" required /><br>
+        <input class="loginForm" type="password" name="password" ng-model="vm.password" required /><br>
       <button class="formButton" type="submit" ng-disabled="loginForm.$invalid" ng-click="vm.login()" >Login</button>
     </div>
+    </form>
+    <form name="registerForm">
     <div>
       <h3 class="formHeader"> O regístrate...</h3>
         <label class="formLabel">Nombres</label><br>
-        <input class="loginForm" name="nombreusuario" ng-model="dialog.nombreusuario" md-autofocus required /><br>
+        <input class="loginForm" name="nombreusuario" ng-model="vm.nombreusuario" md-autofocus required /><br>
         <label class="formLabel">Apellidos</label><br>
-        <input class="loginForm" name="apellidousuario" ng-model="dialog.apellidousuario" md-autofocus required /><br>
+        <input class="loginForm" name="apellidousuario" ng-model="vm.apellidousuario" md-autofocus required /><br>
         <label class="formLabel">E-mail</label><br>
-        <input class="loginForm" name="email" ng-model="dialog.email" md-autofocus required /><br>
+        <input class="loginForm" name="email" ng-model="vm.email" md-autofocus required /><br>
         <label class="formLabel">Introduce tu contraseña</label><br>
-        <input class="loginForm" type="password" name="password" ng-model="dialog.password" required /><br>
+        <input class="loginForm" type="password" name="password" ng-model="vm.password" required /><br>
         <label class="formLabel">Confrima tu contraseña</label><br>
-        <input class="loginForm" type="password" name="confirmpassword" ng-model="dialog.confirmpassword" required /><br>
-      <button class="formButton" type="submit" ng-disabled="registerForm.$invalid" ng-click="vm.register()" >Regístrate</button>
+        <input class="loginForm" type="password" name="confirmpassword" ng-model="vm.confirmpassword" required /><br>
+      <button class="formButton" type="submit"  ng-click="vm.nuevoUsuario()" >Regístrate</button>
     </div>
   </form>
 </div>

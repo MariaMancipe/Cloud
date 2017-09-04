@@ -56,6 +56,21 @@
 	        return reponse;*/
 		}
 
+
+		function getConcurso(idConcurso){
+
+			console.log('Edit '+idConcurso);
+			/*
+			var reponse = '';
+
+			$http.get(path_to_service+idConcurso).
+	        then(function(response) {
+	            reponse = response.data;
+	        });
+
+	        return reponse;*/
+		}
+
 		function postVideo(video){
 			var reponse = '';
 

@@ -349,6 +349,42 @@ input[type="file"] {
     border: 2px solid white;
     border-radius: 25px;
 }
+.vidContainer{
+	display:block;
+	margin:auto;
+	max-width:380px;
+	width:40%;
+
+}
+.boton-paginacion{
+	display:inline-flex;
+	margin: auto;
+	width:30%;
+	max-width:50%;
+	background: #EEE;
+	display:block;
+	color: gray;
+	font-size: 20px;
+    font-style: bold;
+	font-family: Verdana;
+    border: 2px solid gray;
+    border-radius: 25px;
+    height: 100%;
+
+}
+.div-paginacion{
+	display:flex;
+	margin:auto;
+	padding:50px;
+}
+.paginacion-label{
+	font-size: large;
+	height:100%;
+	text-align: center;
+	vertical-align: center;
+	margin:auto;
+	display:block;
+}
 .tableButton{
 	display:block;
 	margin: auto;

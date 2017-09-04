@@ -53,7 +53,7 @@
 
 			vm.irAVideos=function(item){
 				console.log('IR a videos');
-			}
+			};
 
 			vm.nuevoConcurso = function(){
 				console.log('opening pop up');
@@ -64,7 +64,7 @@
 					controllerAs: 'vm',
 					bindToController: true
 				});
-			}
+			};
 
 
 		}

@@ -26,7 +26,7 @@
         <tr ng-repeat="item in vm.concursos" ng-value="{{item}}" class="move">
 
           <td>
-            <href ng-click="vm.irAVideos(item);" style="padding:30px">{{item.nombre}}</href>
+            <a ng-href="#!/videos/{{item.nombre}}">{{item.nombre}}</a>
           </td>
           <td>
             <a ng-click="vm.editarConcurso(item);">Edit</a>
