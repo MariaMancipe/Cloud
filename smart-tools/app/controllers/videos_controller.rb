@@ -18,7 +18,7 @@ class VideosController < ApplicationController
     json_response(@video)
   end
 
-  # POST /videos/:id/concurso/:concurso_id
+  # POST /videos/concurso/:concurso_id
   def create
     @concurso.videos.create!(video_params)
     json_response(@concurso, :created)
@@ -46,11 +46,13 @@ class VideosController < ApplicationController
   private
 
   def video_params
-    params.require(:video).permit(:nombre, :duracion, :codec, :nombre_concursante, :apellido_concursante, :correo_concursante, :fecha_carga, :video, :estado)
+    params = ActionController::Parameters.new(estado: 0 )
+    params.permit(:nombre, :duracion, :codec, :nombre_concursante, :apellido_concursante, :correo_concursante, :mensaje_concursante, :fecha_carga, :video, :estado)
+    puts params[:video]
   end
 
   def set_concurso
-    @concurso = Todo.find(params[:concurso_id])
+    @concurso = Concurso.find(params[:concurso_id])
   end
 
   def search_codec
