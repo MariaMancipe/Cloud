@@ -14,8 +14,6 @@
 			vm.nuevoconcurso.descripcion="";
 			vm.nuevoconcurso.picture="";
 
-			
-
 	        vm.actualizar = function(){
 	        	$http.get("http://localhost:3000/concursos").
 		        then(function(response) {
@@ -24,8 +22,6 @@
 		        	alert('Could not complete request');
 		        });
 	        }
-			//vm.concursos = ConcursosFactory.getConcursos();
-			console.log(vm.concursos);
 
 			vm.getConcursos = function(){
 				vm.concursos = ConcursosFactory.getConcursos();
@@ -46,15 +42,26 @@
 
 				//Envia a registro el concurso
 				ConcursosFactory.postConcursos(vm.nuevoconcurso, f);
-
+				
 				vm.nuevoconcurso.picture=f.name;
 				//Actualiza la lusta de concursos
 				vm.actualizar();
 			}
 			
-			vm.removerConcurso = function(item){
-				ConcursosFactory.deleteConcursoID(item);
-				vm.concursos = ConcursosFactory.getConcursos();
+			vm.removerConcurso = function(concursoID){
+				$http.delete(path_to_service+'/'+concursoID)
+				.then(function(response) {
+		            $http.get("http://localhost:3000/concursos").
+		        then(function(response) {
+		            vm.concursos  = response.data;
+		        },function(error){
+		        	alert('Could not complete request');
+		        });
+		        },function(error){
+		        	alert('Could not complete request');
+		        });
+				//ConcursosFactory.deleteConcursoID(concursoID);
+				//vm.actualizar();
 			};
 
 			vm.editarConcurso = function(item){

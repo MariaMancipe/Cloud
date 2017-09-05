@@ -6,7 +6,8 @@
 	VideosFactory.$inject = ['$http', '$log'];
 
 	function VideosFactory( $http, $log){
-		path_to_service="/";
+		path_to_service="http://localhost:3000/videos";
+		var reponse='';
 
 		return {
 			getVideosAll: getVideosAll,
@@ -14,7 +15,8 @@
 			getVideosConcurso: getVideosConcurso,
 			postVideo: postVideo,
 			getVideoCodec: getVideoCodec,
-			getEstadoVideo: getEstadoVideo
+			getEstadoVideo: getEstadoVideo,
+			getConcurso: getConcurso
 
 		};
 
@@ -58,17 +60,16 @@
 
 
 		function getConcurso(idConcurso){
+			reponse = '';
 
-			console.log('Edit '+idConcurso);
-			/*
-			var reponse = '';
-
-			$http.get(path_to_service+idConcurso).
+			$http.get('http://localhost:3000/concursos/'+idConcurso).
 	        then(function(response) {
 	            reponse = response.data;
+	            console.log('Concurso Actual:');
+	            console.log(reponse);
+	        	return reponse;
 	        });
 
-	        return reponse;*/
 		}
 
 		function postVideo(video){

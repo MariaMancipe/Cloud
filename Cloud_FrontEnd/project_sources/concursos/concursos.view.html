@@ -26,13 +26,13 @@
         <tr ng-repeat="item in vm.concursos" ng-value="{{item}}" class="move">
 
           <td>
-            <a ng-href="#!/videos/{{item.nombre}}">{{item.nombre}}</a>
+            <a ng-href="#!/videos/{{item.id}}">{{item.nombre}}</a>
           </td>
           <td>
             <button class="tableButton-small" ng-click="vm.editarConcurso(item);">Edit</button>
           </td>
           <td>
-            <button class="tableButton-small" ng-click="vm.removerConcurso(item);">Remove</button>
+            <button class="tableButton-small" ng-click="vm.removerConcurso(item.id);">Remove</button>
           </td>
 
         </tr>
