@@ -1,7 +1,7 @@
 class VideosController < ApplicationController
   before_action :set_concurso
   before_action :set_concurso_video, only: [:show, :update, :destroy]
-
+  after_save
   # GET /videos
   def all
     @videos = Video.all
@@ -41,6 +41,7 @@ class VideosController < ApplicationController
     search_estado
     json_response(@videos_estado)
   end
+
 
 
   private

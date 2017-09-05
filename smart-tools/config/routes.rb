@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   patch '/concursos/:id' => 'concursos#update'
   delete '/concursos/:id' => 'concursos#destroy'
 
+
   #VIDEO
 
   get '/videos' => 'videos#all'

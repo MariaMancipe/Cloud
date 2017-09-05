@@ -425,3 +425,8 @@ input[type="file"] {
 .footer-paragraph{
 	font-size: 10px;
 }
+.footer-div{
+	text-align:center
+	width:100%;
+ 	bottom:0;
+}

@@ -6,37 +6,7 @@
 	ConcursosFactory.$inject = ['$http', '$log'];
 
 	function ConcursosFactory( $http, $log){
-		path_to_service="/";
-		reponse =[
-	        	{ 
-	        		nombre: 'Concurso0',
-	        		url: 'Blah0',
-	        		fechainicio: new Date('2009','08','12','15','34','23','0' ),
-	        		fechafin: new Date('2009','09','12','15','34','23','0' ),
-	        		descripcion: 'Descripcion0'
-	        	},
-	        	{ 
-	        		nombre: 'Concurso1',
-	        		url: 'Blah1',
-	        		fechainicio: new Date('2009','08','12','15','34','23','0' ),
-	        		fechafin: new Date('2009','09','12','15','34','23','0' ),
-	        		descripcion: 'Descripcion0'
-	        	},
-	        	{ 
-	        		nombre: 'Concurso2',
-	        		url: 'Blah2',
-	        		fechainicio: new Date('2009','08','12','15','34','23','0' ),
-	        		fechafin: new Date('2009','09','12','15','34','23','0' ),
-	        		descripcion: 'Descripcion0'
-	        	},
-	        	{ 
-	        		nombre: 'Concurso3',
-	        		url: 'Blah3',
-	        		fechainicio: new Date('2009','08','12','15','34','23','0' ),
-	        		fechafin: new Date('2009','09','12','15','34','23','0' ),
-	        		descripcion: 'Descripcion0'
-	        	},
-	        ];
+		path_to_service="http://localhost:3000/concursos";
 
 		return {
 			getConcursos: getConcursos,
@@ -48,29 +18,54 @@
 		};
 
 		function getConcursos(){
+			var reponse;
 
-			/**$http.get(path_to_service).
+			$http.get(path_to_service).
 	        then(function(response) {
 	            reponse = response.data;
-	        });*/
-
-	        return reponse;
+	        	return reponse;
+	        },function(error){
+	        	alert('Could not complete request');
+	        });
 		}
-		function postConcursos(concurso){
-			var cReponse = {};
+		function postConcursos(concurso, file){
+			var marco = {
+				concurso: concurso
+			};
+			var stringMarco = JSON.stringify(marco);
+			console.log(stringMarco);
+			var fd = new FormData();
+		    //Take the first selected file
+		    //fd.append("file", files[0]);
+		    fd.append("file", file);
 
-			cReponse.nombre = concurso.nombre;
-			cReponse.url = concurso.url;
-			cReponse.fechainicio = concurso.fechainicio;
-			cReponse.fechafin = concurso.fechafin;
-			cReponse.descripcion = concurso.descripcion;
+		    console.log(fd);
+		    
+		    //File upload
+		    /*
+		    $http.post(path_to_service, fd, {
+		        withCredentials: false,
+		        headers: {'Content-Type': undefined },
+		        transformRequest: angular.identity
+		    }).then(function successCallback(response) {
+		    	console.log('uploaded')
+			  }, function errorCallback(response) {
+		    	console.log('Not uploaded')
+			  });*/
 
-			reponse.push(cReponse);
-
-			/*$http.post(path_to_service).
-	        then(function(response) {
-	            reponse = response.data;
-	        });*/	        
+		    //Registro concurso
+		    $http.post(path_to_service, stringMarco, {
+		        withCredentials: false,
+		        //headers: {'Content-Type': "application/json" },
+		        headers: {'Content-Type': "application/json" },
+		        transformRequest: angular.identity,
+		        params : stringMarco
+		    }).then(function successCallback(response) {
+		    	console.log('uploaded');
+		    	console.log(response);
+			  }, function errorCallback(response) {
+		    	console.log('Not uploaded');
+			  });      
 		}
 
 		function getConcursoID(idConcurso){

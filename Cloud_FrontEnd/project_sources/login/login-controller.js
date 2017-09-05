@@ -9,6 +9,8 @@
 			vm.apellidousuario = "";
 			vm.password = "";
 			vm.email = "";
+			vm.rol = "";
+			vm.empresa = "";
 			vm.confirmpassword = "";
 
 			vm.postJSON = {};
@@ -16,16 +18,24 @@
 			vm.nuevoUsuario = function(usuario){
 				console.log('Register');
 
+				vm.postJSON.user = vm.email;
+				vm.postJSON.password = vm.password;
+
+				vm.postJSON.nombre = vm.nombreusuario;
+				vm.postJSON.apellido = vm.apellidousuario;
+				vm.postJSON.correo = vm.email;
+				vm.postJSON.empresa = vm.empresa;
+				vm.postJSON.rol = vm.rol;
+				vm.postJSON.clave = vm.password;
+
+				var resuelve = LoginFactory.postUser( vm.postJSON );
+				console.log(resuelve);
+
 			};
 
 			vm.login = function(){
 				console.log('Login');
-				vm.postJSON.user = vm.email;
-				vm.postJSON.password = vm.password;
-
-
-				var resuelve = LoginFactory.login( vm.postJSON );
-				console.log(resuelve);
+				
 					/*.then( function( data ) {
 						vm.loggeado = true;
 
