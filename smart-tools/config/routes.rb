@@ -9,9 +9,10 @@ Rails.application.routes.draw do
   #CONCURSOS
   get '/concursos' => 'concursos#index'
   get '/concursos/:id' => 'concursos#show'
-  post '/concursos' => 'concursos#index'
+  post '/concursos' => 'concursos#create'
   patch '/concursos/:id' => 'concursos#update'
   delete '/concursos/:id' => 'concursos#destroy'
+
 
   #VIDEO
 

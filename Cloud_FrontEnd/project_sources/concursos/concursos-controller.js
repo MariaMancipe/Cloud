@@ -3,23 +3,33 @@
 		function ConcursosController($scope, $http, $uibModal, ConcursosFactory){
 			var vm = this;
 
+			vm.concursos;
+
 			vm.nuevoconcurso={};
 
 			vm.nuevoconcurso.nombre="Juan ";
+			vm.nuevoconcurso.fecha_inicio="";
+			vm.nuevoconcurso.fecha_fin="";
 			vm.nuevoconcurso.url="Perez";
-			vm.nuevoconcurso.imagen="";
-			vm.nuevoconcurso.fechainicio="";
-			vm.nuevoconcurso.fechafin="";
 			vm.nuevoconcurso.descripcion="";
+			vm.nuevoconcurso.picture="";
 
-			vm.concursos = ConcursosFactory.getConcursos();
-			/*vm.concursos = [
-				//Llamado al servicio del factory que devuelve todos los concursos
-				{name:'Nombresito0', value:'0', id:'A'},
-				{name:'Nombresito1', value:'1', id:'B'},
-				{name:'Nombresito2', value:'2', id:'C'},
-				{name:'Nombresito3', value:'3', id:'D'},
-			];*/
+			
+
+	        vm.actualizar = function(){
+	        	$http.get("http://localhost:3000/concursos").
+		        then(function(response) {
+		            vm.concursos  = response.data;
+		        },function(error){
+		        	alert('Could not complete request');
+		        });
+	        }
+			//vm.concursos = ConcursosFactory.getConcursos();
+			console.log(vm.concursos);
+
+			vm.getConcursos = function(){
+				vm.concursos = ConcursosFactory.getConcursos();
+			}
 
 			vm.crearconcurso = function(item){
 				//Obtiene la imagen carga en el elemento file del DOM
@@ -35,10 +45,11 @@
 				r.readAsBinaryString(f);
 
 				//Envia a registro el concurso
-				ConcursosFactory.postConcursos(item, f);
+				ConcursosFactory.postConcursos(vm.nuevoconcurso, f);
 
+				vm.nuevoconcurso.picture=f.name;
 				//Actualiza la lusta de concursos
-				vm.concursos = ConcursosFactory.getConcursos();
+				vm.actualizar();
 			}
 			
 			vm.removerConcurso = function(item){
@@ -65,7 +76,7 @@
 				});
 			};
 
-
+			vm.actualizar();
 		}
 	angular
 		.module('app')

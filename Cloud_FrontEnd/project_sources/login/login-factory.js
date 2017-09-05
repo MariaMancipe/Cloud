@@ -1,7 +1,7 @@
 (function(){
 
 	function LoginFactory( $http, $log){
-		path_to_service="/";
+		path_to_service="http://localhost:3000/usuarios";
 
 		reponse = {};
 
@@ -24,19 +24,22 @@
 		}
 
 		function postUser(usuario){
-			var cReponse = {};
 
-			cReponse.nombre = concurso.nombre;
-			cReponse.url = concurso.url;
-			cReponse.fechainicio = concurso.fechainicio;
-			cReponse.fechafin = concurso.fechafin;
-			cReponse.descripcion = concurso.descripcion;
+			var stringMarco = JSON.stringify(usuario);
 
-
-			/*$http.post(path_to_service).
-	        then(function(response) {
-	            reponse = response.data;
-	        });*/	        
+			$http.post(path_to_service, stringMarco, {
+		        withCredentials: false,
+		        //headers: {'Content-Type': "application/json" },
+		        headers: {'Content-Type': "application/json" },
+		        transformRequest: angular.identity,
+		        params : stringMarco
+		    }).then(function successCallback(response) {
+		    	console.log('User uploaded');
+		    	console.log(response);
+			  }, function errorCallback(response) {
+		    	console.log('Not uploaded');
+		    	console.log(response);
+			  }); 
 		}
 
 	}
