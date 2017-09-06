@@ -1,7 +1,6 @@
 class VideosController < ApplicationController
   before_action :set_concurso
   before_action :set_concurso_video, only: [:show, :update, :destroy]
-  after_save
   # GET /videos
   def all
     @videos = Video.all
@@ -48,7 +47,7 @@ class VideosController < ApplicationController
 
   def video_params
     params = ActionController::Parameters.new(estado: 0 )
-    params.permit(:nombre, :duracion, :codec, :nombre_concursante, :apellido_concursante, :correo_concursante, :mensaje_concursante, :fecha_carga, :video, :estado, :concurso_id)
+    params.permit(:nombre, :duracion, :codec, :nombre_concursante, :apellido_concursante, :correo_concursante, :mensaje_concursante, :fecha_carga, :video, :estado)
     puts params[:video]
   end
 
