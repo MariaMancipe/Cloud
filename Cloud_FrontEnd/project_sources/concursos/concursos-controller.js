@@ -15,7 +15,7 @@
 			vm.nuevoconcurso.picture="";
 
 	        vm.actualizar = function(){
-	        	$http.get("http://localhost:3000/concursos").
+	        	$http.get("http://0.0.0.0:3000/concursos").
 		        then(function(response) {
 		            vm.concursos  = response.data;
 		        },function(error){
@@ -51,7 +51,7 @@
 			vm.removerConcurso = function(concursoID){
 				$http.delete(path_to_service+'/'+concursoID)
 				.then(function(response) {
-		            $http.get("http://localhost:3000/concursos").
+		            $http.get("http://0.0.0.0:3000/concursos").
 		        then(function(response) {
 		            vm.concursos  = response.data;
 		        },function(error){

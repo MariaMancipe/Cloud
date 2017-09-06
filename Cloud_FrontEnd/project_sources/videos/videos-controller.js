@@ -154,7 +154,7 @@
 
 				//File upload
 		    
-			    $http.post('http://localhost:3000/videos/concurso/'+$routeParams.nombre, fd, {
+			    $http.post('http://0.0.0.0:3000/videos/concurso/'+$routeParams.nombre, fd, {
 			        withCredentials: false,
 			        headers: {'Content-Type': undefined},
 			        transformRequest: angular.identity,
