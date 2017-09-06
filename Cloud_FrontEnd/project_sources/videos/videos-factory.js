@@ -73,14 +73,20 @@
 		}
 
 		function postVideo(video){
-			var reponse = '';
 
-			$http.get(path_to_service+idConcurso).
-	        then(function(response) {
-	            reponse = response.data;
-	        });
-
-	        return reponse;
+			
+			 $http.post(path_to_service, stringMarco, {
+		        withCredentials: false,
+		        //headers: {'Content-Type': "application/json" },
+		        headers: {'Content-Type': "application/json" },
+		        transformRequest: angular.identity,
+		        params : stringMarco
+		    }).then(function successCallback(response) {
+		    	console.log('uploaded');
+		    	console.log(response);
+			  }, function errorCallback(response) {
+		    	console.log('Not uploaded');
+			  });      
 		}
 
 		function getVideoCodec(codec){

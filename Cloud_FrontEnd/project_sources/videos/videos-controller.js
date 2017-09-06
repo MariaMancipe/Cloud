@@ -14,7 +14,9 @@
 
 
 		function VideosController($scope, $http, $routeParams, $uibModal, $sce, VideosFactory){
-			var vm = this;
+			var vm = this
+
+			vm.idconcursoActual='';
 
 		    vm.currentPage = 0;
 			vm.pageSize = 10;
@@ -74,10 +76,16 @@
 			//console.log(vm.playerconfig.sources);
 
 			vm.nuevovideo = {};
-			vm.nuevovideo.nombre = "Tu nombre";
-			vm.nuevovideo.apellido = "Tu apellido";
+			vm.nuevovideo.titulo = "Título";
 			vm.nuevovideo.video = "";
-			vm.nuevovideo.mensaje = "¿Por qué te gusta el producto que aparece en el video?";
+			vm.nuevovideo.mensaje_concursante = "¿Por qué te gusta el producto que aparece en el video?";
+			vm.nuevovideo.duracion = "";
+			vm.nuevovideo.codec = "";
+			vm.nuevovideo.nombre_concursante = "Tu nombre";
+			vm.nuevovideo.apellido_concursante = "Tu apellido";
+			vm.nuevovideo.correo_concursante = "Tu correo";
+			vm.nuevovideo.fecha_carga = "";
+			vm.nuevovideo.estado = "En conversion";
 
 			vm.init = function(){
 				//Esto deberia ir en el factory pero por naturaleza asincrona no funciona bien
@@ -85,17 +93,18 @@
 				$http.get('http://localhost:3000/concursos/'+$routeParams.nombre).
 		        then(function(response) {
 		            vm.concursoActual = response.data;
+		            vm.idconcursoActual = vm.concursoActual.id
 		            console.log('Concurso Actual:');
 		            console.log(vm.concursoActual);
 		        });
 
-		        /* VideoController uninitialized
+		        
 		        $http.get('http://localhost:3000/videos/byConcurso/'+$routeParams.nombre).
 		        then(function(response) {
 		            vm.vids = response.data;
 		            console.log('Videos del Concurso Actual:');
 		            console.log(vm.vids);
-		        });*/
+		        });
 			}
 
 			vm.numberOfPages=function(){
@@ -118,24 +127,44 @@
 			//angular.module('app')
 				;
 
-			vm.procesarNuevoVideo = function(video){
-				var f = document.getElementById('file').files[0],
+			vm.procesarNuevoVideo = function(){
+
+				var file = document.getElementById('video_file').files[0],
 				r = new FileReader();
 
-				r.onloadend = function(e) {
-					var data = e.target.result;
-					//TODO enviar al back para ser almacenada
-					//send your binary data via $http or $resource or do anything else with it
-				}
 
-				r.readAsBinaryString(f);
-				console.log(f);
+				vm.nuevovideo.video = file;
+				vm.nuevovideo.duracion = file.duration;
+				vm.nuevovideo.codec = file.name.substr(file.name.length-4,file.name.length );
+				vm.nuevovideo.fecha_carga = new Date();
+				var fd = new FormData();
 
-				//Envia a registro el concurso
-				ConcursosFactory.postVideo(video);
+			    //Take the first selected file
+			    fd.append("video", file);
+			    fd.append("nombre", vm.nuevovideo.titulo);
+			    fd.append("mensaje_concursante", vm.nuevovideo.mensaje_concursante);
+			    fd.append("duracion", vm.nuevovideo.duracion);
+			    fd.append("nombre_concursante", vm.nuevovideo.nombre_concursante);
+			    fd.append("apellido_concursante", vm.nuevovideo.apellido_concursante);
+			    fd.append("correo_concursante", vm.nuevovideo.correo_concursante);
+			    fd.append("fecha_carga", vm.nuevovideo.fecha_carga);
+			    fd.append("estado", vm.nuevovideo.estado);
 
-				//Actualiza la lusta de concursos
-				vm.videos = VideosFactory.getConcursos();
+			    console.log(fd);
+
+				//File upload
+		    
+			    $http.post('http://localhost:3000/videos/concurso/'+$routeParams.nombre, fd, {
+			        withCredentials: false,
+			        headers: {'Content-Type': undefined},
+			        transformRequest: angular.identity,
+			        params : fd
+			    }).then(function successCallback(response) {
+			    	console.log('uploaded')
+				  }, function errorCallback(response) {
+			    	console.log('Not uploaded')
+				  });
+
 			}
 
 

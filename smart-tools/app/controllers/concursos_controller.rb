@@ -35,7 +35,6 @@ class ConcursosController < ApplicationController
 
   def concurso_params
     params.permit(:nombre, :url, :fecha_inicio, :fecha_fin, :descripcion, :picture)
-    #params.require(:concurso).permit(:nombre, :url, :fecha_inicio, :fecha_fin, :descripcion, :picture)
   end
 
   def set_concurso

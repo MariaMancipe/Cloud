@@ -5,6 +5,6 @@ class Video < ApplicationRecord
   after_create :set_ruta_convertida
 
   def set_ruta_convertida
-
+    puts "self.nombre"
   end
 end
