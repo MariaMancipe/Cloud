@@ -1,10 +1,7 @@
 class VideosController < ApplicationController
   before_action :set_concurso
   before_action :set_concurso_video, only: [:show, :update, :destroy]
-<<<<<<< HEAD
-  #after_save
-=======
->>>>>>> 495cf1e05e67b0cf2d5e414867919da34541fe5a
+  after_save
   # GET /videos
   def all
     @videos = Video.all
