@@ -2,13 +2,13 @@ require 'streamio-ffmpeg'
 
 def move_upload_to_original(path)
   new_path = File.basename(path)
-  File.rename(path, "./video/original/#{new_path}")
+  File.rename(path, "./public/video/original/#{new_path}")
 end
 
 def convert_to_mp4(path)
   puts "convert to mp4 #{path}"
   movie = FFMPEG::Movie.new(path)
-  converted = "./video/converted/"
+  converted = "./public/video/converted/"
   new_path = File.basename(path)
   new_path = converted+ new_path[0,new_path.length-4]
 
@@ -18,9 +18,9 @@ end
 
 def search_files
 
-  original = "./video/original"
-  converted = "./video/converted"
-  upload = "./video/upload/"
+  original = "./public/video/original"
+  converted = "./public/video/converted"
+  upload = "./public/video/upload/"
   Dir.mkdir(original) unless File.exist?(original)
   Dir.mkdir(converted) unless File.exist?(converted)
   inicio = Time.now
