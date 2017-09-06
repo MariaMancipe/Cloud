@@ -17,8 +17,8 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
-every 30.minutes do
-  runner "./lib/video_converter.rb"
-end
+# every 30.minutes do
+#   runner "./lib/video_converter.rb"
+# end
 
 # Learn more: http://github.com/javan/whenever
