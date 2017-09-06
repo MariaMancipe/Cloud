@@ -1,9 +1,21 @@
 (function(){
 	
+	angular
+		.module('app')
+		.controller('VideosController', VideosController)
+		.filter('startFrom', function() {
+			    return function(input, start) {
+			        start = +start; //parse to int
+			        return input.slice(start);
+			    }
+			});
+
+		VideosController.$inject = ['$scope', '$http', '$routeParams','$uibModal', '$sce', 'VideosFactory'];
+
+
 		function VideosController($scope, $http, $routeParams, $uibModal, $sce, VideosFactory){
 			var vm = this;
 
-			vm.concursoActual = $routeParams;
 		    vm.currentPage = 0;
 			vm.pageSize = 10;
 			vm.orderBy = "-nombre";
@@ -25,6 +37,19 @@
 				{'nombre': 15, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
 				{'nombre': 16, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
 				{'nombre': 17, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
+				{'nombre': 18, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
+				{'nombre': 19, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
+				{'nombre': 20, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
+				{'nombre': 21, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
+				{'nombre': 22, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
+				{'nombre': 23, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
+				{'nombre': 24, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
+				{'nombre': 25, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
+				{'nombre': 26, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
+				{'nombre': 27, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
+				{'nombre': 28, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
+				{'nombre': 29, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
+				{'nombre': 30, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
 			];
 
 			vm.playerconfig = {
@@ -46,7 +71,7 @@
 				}
 			};
 
-			console.log(vm.playerconfig.sources);
+			//console.log(vm.playerconfig.sources);
 
 			vm.nuevovideo = {};
 			vm.nuevovideo.nombre = "Tu nombre";
@@ -54,10 +79,32 @@
 			vm.nuevovideo.video = "";
 			vm.nuevovideo.mensaje = "¿Por qué te gusta el producto que aparece en el video?";
 
+			vm.init = function(){
+				//Esto deberia ir en el factory pero por naturaleza asincrona no funciona bien
+				var reponse;
+				$http.get('http://localhost:3000/concursos/'+$routeParams.nombre).
+		        then(function(response) {
+		            vm.concursoActual = response.data;
+		            console.log('Concurso Actual:');
+		            console.log(vm.concursoActual);
+		        });
+
+		        /* VideoController uninitialized
+		        $http.get('http://localhost:3000/videos/byConcurso/'+$routeParams.nombre).
+		        then(function(response) {
+		            vm.vids = response.data;
+		            console.log('Videos del Concurso Actual:');
+		            console.log(vm.vids);
+		        });*/
+			}
+
 			vm.numberOfPages=function(){
 		        return Math.ceil(vm.vids.length/vm.pageSize);                
 		    };
 
+
+
+		    //Subir un video------------
 			vm.subirVideo = function(){
 				console.log('opening pop up');
 
@@ -93,17 +140,4 @@
 
 
 		}
-	angular
-		.module('app')
-		.controller('VideosController', VideosController)
-		.filter('startFrom', function() {
-			    return function(input, start) {
-			        start = +start; //parse to int
-			        return input.slice(start);
-			    }
-			});
-
-		VideosController.$inject = ['$scope', '$http', '$routeParams','$uibModal', '$sce', 'VideosFactory'];
-
-
 })();

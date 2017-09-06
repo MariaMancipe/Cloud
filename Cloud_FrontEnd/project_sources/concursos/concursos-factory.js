@@ -14,7 +14,6 @@
 			postConcursos: postConcursos,
 			updateConcursoID: updateConcursoID,
 			deleteConcursoID: deleteConcursoID
-
 		};
 
 		function getConcursos(){
@@ -34,38 +33,47 @@
 			};
 			var stringMarco = JSON.stringify(marco);
 			console.log(stringMarco);
+
 			var fd = new FormData();
 		    //Take the first selected file
 		    //fd.append("file", files[0]);
-		    fd.append("file", file);
+		    fd.append("picture", file);
+		    fd.append("nombre", concurso.nombre);
+		    fd.append("fecha_inicio", concurso.fecha_inicio);
+		    fd.append("fecha_fin", concurso.fecha_fin);
+		    fd.append("url", concurso.url);
+		    fd.append("descripcion", concurso.descripcion);
+
 
 		    console.log(fd);
 		    
 		    //File upload
-		    /*
+		    
 		    $http.post(path_to_service, fd, {
 		        withCredentials: false,
-		        headers: {'Content-Type': undefined },
-		        transformRequest: angular.identity
+		        headers: {'Content-Type': undefined},
+		        transformRequest: angular.identity,
+		        params : fd
 		    }).then(function successCallback(response) {
 		    	console.log('uploaded')
 			  }, function errorCallback(response) {
 		    	console.log('Not uploaded')
-			  });*/
+			  });
 
 		    //Registro concurso
-		    $http.post(path_to_service, stringMarco, {
+		    /*
+		    $http.post(path_to_service, fd, {
 		        withCredentials: false,
-		        //headers: {'Content-Type': "application/json" },
-		        headers: {'Content-Type': "application/json" },
+		        //headers: {'Content-Type': "multipart/form-data" },
+		        headers: {'Content-Type': undefined },
 		        transformRequest: angular.identity,
-		        params : stringMarco
 		    }).then(function successCallback(response) {
 		    	console.log('uploaded');
 		    	console.log(response);
 			  }, function errorCallback(response) {
 		    	console.log('Not uploaded');
-			  });      
+			  });     */ 
+			  
 		}
 
 		function getConcursoID(idConcurso){
@@ -92,36 +100,8 @@
 	        return reponse;
 		}
 
-		function deleteConcursoID(concurso){
-				console.log(reponse);
-				var terminar = false;
-				var indice = 0;
-
-				for (var i = 0; i < reponse.length && !terminar; i++) {
-					if(reponse[i].nombre===concurso.nombre){
-						indice = i;
-						terminar = true;
-					};
-				}
-
-				reponse.splice(indice, 1);
-				console.log(reponse);
-				/*var index = reponse.indexOf(concurso);
-				console.log('Remover '+index);
-				if(index>-1){
-					reponse.splice(index, 1);
-				}
-				console.log(reponse);*/
-
-			/*
-			var reponse = '';
-
-			$http.get(path_to_service+idConcurso).
-	        then(function(response) {
-	            reponse = response.data;
-	        });
-
-	        return reponse;*/
+		function deleteConcursoID(concursoID){
+			$http.delete(path_to_service+'/'+concursoID);
 		}
 	}
 
