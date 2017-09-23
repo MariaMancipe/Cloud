@@ -25,12 +25,13 @@
           </vg-media>
         </videogular>-->
         <video width="400" controls>
-          <source src="http://0.0.0.0:3000/{{item.video.url}}" type="video/mp4">
+          <source src="http://0.0.0.0:3000{{item.video.url}}" type="video/mp4">
           Your browser does not support HTML5 video.
         </video>
         <!--<img src="https://www.w3schools.com/w3images/house3.jpg" alt="House" style="width:100%">-->
       </div>
       <p> {{item.mensaje_concursante}}</p>
+      <p class="fecha-subida"> by: {{item.nombre_concursante}} {{item.apellido_concursante}}</p>
       <p class="fecha-subida"> {{item.fecha_carga}}</p>
       <p class="estado-video"> {{item.estado}}</p>
     </div>

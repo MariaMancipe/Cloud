@@ -1,11 +1,12 @@
 (function(){
 	
-		function ConcursosController($scope, $http, $uibModal, ConcursosFactory){
+		function ConcursosController($scope, $rootScope, $http, $uibModal, ConcursosFactory){
 			var vm = this;
 
 			vm.concursos;
 
 			vm.nuevoconcurso={};
+			vm.instanciaModalConcurso;
 
 			vm.nuevoconcurso.nombre="Juan ";
 			vm.nuevoconcurso.fecha_inicio="";
@@ -19,7 +20,7 @@
 		        then(function(response) {
 		            vm.concursos  = response.data;
 		        },function(error){
-		        	alert('Could not complete request');
+		        	alert('No se pudo completar');
 		        });
 	        }
 
@@ -32,6 +33,46 @@
 				var f = document.getElementById('file').files[0],
 				r = new FileReader();
 
+				/*var marco = {
+					concurso: concurso
+				};
+				var stringMarco = JSON.stringify(marco);
+				console.log(stringMarco);*/
+
+				var fd = new FormData();
+			    //Take the first selected file
+			    //fd.append("file", files[0]);
+			    fd.append("picture", file);
+			    fd.append("nombre", vm.nuevoconcurso.nombre);
+			    fd.append("fecha_inicio", vm.nuevoconcurso.fecha_inicio);
+			    fd.append("fecha_fin", vm.nuevoconcurso.fecha_fin);
+			    fd.append("url", vm.nuevoconcurso.url);
+			    fd.append("descripcion", vm.nuevoconcurso.descripcion);
+
+
+			    console.log(fd);
+			    
+			    //File upload
+			    
+			    $http.post("http://0.0.0.0:3000/concursos", fd, {
+			        withCredentials: false,
+			        headers: {'Content-Type': undefined},
+			        transformRequest: angular.identity,
+			        params : fd
+			    }).then(function successCallback(response) {
+			    	$http.get("http://0.0.0.0:3000/concursos").
+			        then(function(response) {
+			            vm.concursos  = response.data;
+			        },function(error){
+			        	alert('Could not complete request');
+			        });
+			    	console.log('uploaded');
+				  }, function errorCallback(response) {
+			    	console.log('Not uploaded');
+			  });
+			    $rootScope.modalInstance.close('a');
+
+		    	/*
 				r.onloadend = function(e) {
 					var data = e.target.result;
 					//TODO enviar al back para ser almacenada
@@ -41,22 +82,18 @@
 				r.readAsBinaryString(f);
 
 				//Envia a registro el concurso
-				ConcursosFactory.postConcursos(vm.nuevoconcurso, f);
-				
-				vm.nuevoconcurso.picture=f.name;
-				//Actualiza la lusta de concursos
-				vm.actualizar();
+				ConcursosFactory.postConcursos(vm.nuevoconcurso, f);*/
 			}
 			
 			vm.removerConcurso = function(concursoID){
 				$http.delete(path_to_service+'/'+concursoID)
 				.then(function(response) {
 		            $http.get("http://0.0.0.0:3000/concursos").
-		        then(function(response) {
-		            vm.concursos  = response.data;
-		        },function(error){
-		        	alert('Could not complete request');
-		        });
+			        then(function(response) {
+			            vm.concursos  = response.data;
+			        },function(error){
+			        	alert('Could not complete request');
+			        });
 		        },function(error){
 		        	alert('Could not complete request');
 		        });
@@ -75,12 +112,13 @@
 			vm.nuevoConcurso = function(){
 				console.log('opening pop up');
 
-				var modalInstance = $uibModal.open({
+				$rootScope.modalInstance = $uibModal.open({
 					templateUrl: 'project_sources/concursos/nuevoconcurso.template.html',
 					controller: 'ConcursosController',
 					controllerAs: 'vm',
 					bindToController: true
 				});
+
 			};
 
 			vm.actualizar();
@@ -89,7 +127,7 @@
 		.module('app')
 		.controller('ConcursosController', ConcursosController);
 
-		ConcursosController.$inject = ['$scope', '$http', '$uibModal', 'ConcursosFactory'];
+		ConcursosController.$inject = ['$scope','$rootScope', '$http', '$uibModal', 'ConcursosFactory'];
 
 
 })();

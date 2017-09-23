@@ -1,6 +1,6 @@
 (function(){
 	
-		function LoginController($scope, LoginFactory){
+		function LoginController($scope,$rootScope, LoginFactory){
 				console.log('opening pop up');
 
 			var vm = this;
@@ -30,6 +30,7 @@
 
 				var resuelve = LoginFactory.postUser( vm.postJSON );
 				console.log(resuelve);
+				$rootScope.modalInstance.close('a');
 
 			};
 
@@ -44,6 +45,8 @@
 						alert('No se puedo iniciar tu sesión.');
 
 					});*/
+
+				$rootScope.modalInstance.close('a');
 			};;
 
 
@@ -52,7 +55,7 @@
 		.module('app')
 		.controller('LoginController', LoginController);
 
-		LoginController.$inject = ['$scope', 'LoginFactory'];
+		LoginController.$inject = ['$scope', '$rootScope','LoginFactory'];
 
 
 })();

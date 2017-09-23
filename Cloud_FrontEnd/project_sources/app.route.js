@@ -1,10 +1,10 @@
 (function() {
 	angular
 		.module( 'app' , ['ui.bootstrap', 'ngRoute'])
-		.controller( 'MainController',['$scope', '$uibModal',  function($scope, $uibModal){
+		.controller( 'MainController',['$scope','$rootScope', '$uibModal',  function($scope,$rootScope, $uibModal){
 
 			$scope.open = function () {
-				var modalInstance = $uibModal.open({
+				$rootScope.modalInstance = $uibModal.open({
 					templateUrl: 'project_sources/login/login.template.html',
 				});
 			}
@@ -63,6 +63,7 @@
 	            controller: 'VideosController',
 	            controllerAs: 'vm',
 	            resolve: {
+	            	
 	            }
 	        })
 	}

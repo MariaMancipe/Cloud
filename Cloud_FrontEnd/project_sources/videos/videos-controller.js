@@ -21,6 +21,9 @@
 		    vm.currentPage = 0;
 			vm.pageSize = 10;
 			vm.orderBy = "-nombre";
+			vm.vids = [];
+
+			/*
 			vm.vids = [
 				{'nombre': 1, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
 				{'nombre': 2, 'source': 'http://static.videogular.com/assets/videos/videogular.mp4'}, 
@@ -71,7 +74,7 @@
 				plugins: {
 					poster: "http://www.videogular.com/assets/images/videogular.png"
 				}
-			};
+			};*/
 
 			//console.log(vm.playerconfig.sources);
 
