@@ -19,7 +19,7 @@
 			vm.nuevoUsuario = function(usuario){
 				console.log('Register');
 				$rootScope.loggeado = true;	
-
+				$rootScope.nombreApellido = vm.nombreusuario;	
 
 				vm.postJSON.user = vm.email;
 				vm.postJSON.password = vm.password;

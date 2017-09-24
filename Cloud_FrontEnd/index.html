@@ -37,6 +37,9 @@
   <script type="text/javascript" src="./project_sources/login/login-controller.js"></script>
   <script type="text/javascript" src="./project_sources/login/login-factory.js"></script>
 
+  <script type="text/javascript" src="./project_sources/misconcursos/misconcursos-controller.js"></script>
+  <script type="text/javascript" src="./project_sources/misconcursos/misconcursos-factory.js"></script>
+
   <script type="text/javascript" src="./project_sources/concursos/concursos-controller.js"></script>
   <script type="text/javascript" src="./project_sources/concursos/concursos-factory.js"></script>
 
@@ -54,7 +57,9 @@
     <div class="w3-right w3-hide-small">
       <a ng-show="loggeado" href="#!misconcursos" class="w3-bar-item w3-button">Mis Concursos</a>
       <a href="#!concursos" class="w3-bar-item w3-button">Concursos</a>
-      <a ng-click="open()" class="w3-bar-item w3-button">Login | Registro</a>
+      <a ng-show="loggeado" class="w3-bar-item w3-button">Bienvenid@ {{nombreApellido}}</a>
+      <a ng-click="open()" ng-hide="loggeado" class="w3-bar-item w3-button">Login | Registro</a>
+      <a ng-click="close()" ng-show="loggeado" href="#/!" class="w3-bar-item w3-button">Logout</a>
     </div>
   </div>
 </div>

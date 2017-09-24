@@ -8,6 +8,10 @@
 					templateUrl: 'project_sources/login/login.template.html',
 				});
 			}
+
+			$scope.close = function () {
+				$scope.loggeado = false;
+			}
 		}] )
 		//MainController )
 		.config( config );
