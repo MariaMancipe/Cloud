@@ -51,6 +51,14 @@
 	            	// En este resolve van los datos que se deben pasar al siugiente controlador
 	            }*/
 	        })
+	        .when('/misconcursos', {
+	            templateUrl: 'project_sources/misconcursos/misconcursos.view.html',
+	            controller: 'MisConcursosController',
+	            controllerAs: 'vm',
+	            /*resolve: {
+	            	// En este resolve van los datos que se deben pasar al siugiente controlador
+	            }*/
+	        })
 	        .when('/login', {
 	            templateUrl: '/project_sources/login/login.view.html',
 	            controller: 'LoginController',

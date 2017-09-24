@@ -4,7 +4,6 @@
 				console.log('opening pop up');
 
 			var vm = this;
-			vm.loggeado = false;
 			vm.nombreusuario = "";
 			vm.apellidousuario = "";
 			vm.password = "";
@@ -15,8 +14,12 @@
 
 			vm.postJSON = {};
 
+			$rootScope.loggeado = false;
+
 			vm.nuevoUsuario = function(usuario){
 				console.log('Register');
+				$rootScope.loggeado = true;	
+
 
 				vm.postJSON.user = vm.email;
 				vm.postJSON.password = vm.password;
@@ -29,23 +32,18 @@
 				vm.postJSON.clave = vm.password;
 
 				var resuelve = LoginFactory.postUser( vm.postJSON );
-				console.log(resuelve);
+				console.log(vm.loggeado);
 				$rootScope.modalInstance.close('a');
 
 			};
 
 			vm.login = function(){
 				console.log('Login');
-				
-					/*.then( function( data ) {
-						vm.loggeado = true;
-
-					}, function error(reason) {
-						vm.loggeado = false;
-						alert('No se puedo iniciar tu sesión.');
-
-					});*/
-
+					$rootScope.loggeado = true;					
+					//vm.postJSON.correo = vm.email;
+					//vm.postJSON.clave = vm.password;
+					//var resuelve = LoginFactory.login( vm.postJSON );
+					//console.log(resuelve);
 				$rootScope.modalInstance.close('a');
 			};;
 

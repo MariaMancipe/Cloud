@@ -1,5 +1,5 @@
 
-<div ng-controller = "ConcursosController" ng-init="vm.getConcursos()">
+<div ng-controller = "MisConcursosController">
 
 <!-- Page content -->
 <div class="w3-content p_padding" style="max-width:1564px">
@@ -15,9 +15,9 @@
       <thead>
         <tr>
         <th ><p>Concursos</p></th>
-          <th> </th>
-          <th> </th>
-          <th> </th>
+          <th> Edit</th>
+          <th> Remove</th>
+          <th> <button class="tableButton" ng-click="vm.nuevoConcurso()">+</button></th>
         </tr>
       </thead>
 
@@ -27,6 +27,12 @@
 
           <td>
             <a ng-href="#!/videos/{{item.id}}">{{item.nombre}}</a>
+          </td>
+          <td>
+            <button class="tableButton-small" ng-click="vm.editarConcurso(item);">Edit</button>
+          </td>
+          <td>
+            <button class="tableButton-small" ng-click="vm.removerConcurso(item.id);">Remove</button>
           </td>
 
         </tr>

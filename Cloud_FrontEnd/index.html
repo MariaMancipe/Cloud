@@ -52,13 +52,14 @@
     <a href="#/!" class="w3-bar-item w3-button"><b>HOME</b></a>
     <!-- Float links to the right. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
+      <a ng-show="loggeado" href="#!misconcursos" class="w3-bar-item w3-button">Mis Concursos</a>
       <a href="#!concursos" class="w3-bar-item w3-button">Concursos</a>
       <a ng-click="open()" class="w3-bar-item w3-button">Login | Registro</a>
     </div>
   </div>
 </div>
 
-<div ng-view ">
+<div ng-view>
   <!---Login 
   <div ng-controller="MainController as login" class="md-padding dialogdemoBasicUsage" id="popupContainer" ng-cloak>
     <div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="center">
