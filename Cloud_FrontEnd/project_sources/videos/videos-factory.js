@@ -6,7 +6,9 @@
 	VideosFactory.$inject = ['$http', '$log'];
 
 	function VideosFactory( $http, $log){
-		path_to_service="http://localhost:3000/videos";
+		path_to_service="http://34.236.13.118:9292/videos";
+		var rutaAcceso = "http://34.236.13.118:9292";
+
 		var reponse='';
 
 		return {
@@ -30,6 +32,25 @@
 
 	        return reponse;
 		}
+
+		function getInfoConcurso(idDelConcurso, metodoExito, metodoFail){
+			var reponse;
+				$http.get(rutaAcceso+"/concursos/"+$rootScope.concurso_id).then(function successCallback(response) {
+		    	metodoExito(response);
+			  	}, function errorCallback(response) {
+		    	metodoFail();
+			  }); 
+		}
+
+		function getInfoVideos(idDelConcurso, metodoExito, metodoFail){
+			$http.get(rutaAcceso + "/videos/concurso/:"+$rootScope.concurso_id).then(function successCallback(response) {
+		    	metodoExito(response);
+			  	}, function errorCallback(response) {
+		    	metodoFail();
+			  }); 
+		        
+		}
+
 		function getVideo(idVideo){
 			//TODO Definir tratamiento
 			

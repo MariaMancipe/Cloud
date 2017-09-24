@@ -1,7 +1,7 @@
 (function(){
 
 	function LoginFactory( $http, $log){
-		path_to_service="http://0.0.0.0:3000/usuarios";
+		path_to_service="http://34.236.13.118:9292/usuarios";
 
 		reponse = {};
 
@@ -23,7 +23,7 @@
 	        return reponse;
 		}
 
-		function postUser(usuario){
+		function postUser(usuario, sucess, fail){
 
 			var stringMarco = JSON.stringify(usuario);
 
@@ -34,8 +34,8 @@
 		        transformRequest: angular.identity,
 		        params : stringMarco
 		    }).then(function successCallback(response) {
-		    	console.log('User uploaded');
-		    	console.log(response);
+		    	//:v
+		    	sucess(response.data);
 			  }, function errorCallback(response) {
 		    	console.log('Not uploaded');
 		    	console.log(response);

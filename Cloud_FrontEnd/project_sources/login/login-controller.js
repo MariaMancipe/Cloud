@@ -16,6 +16,19 @@
 
 			$rootScope.loggeado = false;
 
+
+
+			vm.guardarId = function(dataDelPost)
+			{
+				$rootScope.id_usuario = dataDelPost.id;
+				console.log($rootScope.id_usuario);
+			}
+
+			vm.fallo = function()
+			{
+				//TODO que paso cuando muere
+			}
+
 			vm.nuevoUsuario = function(usuario){
 				console.log('Register');
 				$rootScope.loggeado = true;	
@@ -31,8 +44,9 @@
 				vm.postJSON.rol = vm.rol;
 				vm.postJSON.clave = vm.password;
 
-				var resuelve = LoginFactory.postUser( vm.postJSON );
-				console.log(vm.loggeado);
+				resuelve = LoginFactory.postUser( vm.postJSON, vm.guardarId, vm.fallo );
+				
+				
 				$rootScope.modalInstance.close('a');
 
 			};

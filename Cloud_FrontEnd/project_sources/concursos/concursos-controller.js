@@ -2,6 +2,7 @@
 	
 		function ConcursosController($scope, $rootScope, $http, $uibModal, ConcursosFactory){
 			var vm = this;
+			var rutaAcceso = "http://34.236.13.118:9292/concursos";
 
 			vm.concursos;
 
@@ -16,7 +17,7 @@
 			vm.nuevoconcurso.picture="";
 
 	        vm.actualizar = function(){
-	        	$http.get("http://0.0.0.0:3000/concursos").
+	        	$http.get(rutaAcceso).
 		        then(function(response) {
 		            vm.concursos  = response.data;
 		        },function(error){
@@ -54,13 +55,13 @@
 			    
 			    //File upload
 			    
-			    $http.post("http://0.0.0.0:3000/concursos", fd, {
+			    $http.post(rutaAcceso, fd, {
 			        withCredentials: false,
 			        headers: {'Content-Type': undefined},
 			        transformRequest: angular.identity,
 			        params : fd
 			    }).then(function successCallback(response) {
-			    	$http.get("http://0.0.0.0:3000/concursos").
+			    	$http.get(rutaAcceso).
 			        then(function(response) {
 			            vm.concursos  = response.data;
 			        },function(error){
@@ -88,7 +89,7 @@
 			vm.removerConcurso = function(concursoID){
 				$http.delete(path_to_service+'/'+concursoID)
 				.then(function(response) {
-		            $http.get("http://0.0.0.0:3000/concursos").
+		            $http.get(rutaAcceso).
 			        then(function(response) {
 			            vm.concursos  = response.data;
 			        },function(error){
@@ -119,6 +120,11 @@
 					bindToController: true
 				});
 
+			};
+
+			vm.irAConcurso = function(elId)
+			{
+				$rootScope.concurso_id = elId;
 			};
 
 			vm.actualizar();

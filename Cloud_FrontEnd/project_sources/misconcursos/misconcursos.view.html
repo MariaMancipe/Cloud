@@ -1,5 +1,5 @@
 
-<div ng-controller = "MisConcursosController">
+<div ng-controller = "ConcursosController">
 
 <!-- Page content -->
 <div class="w3-content p_padding" style="max-width:1564px">
@@ -29,10 +29,10 @@
             <a ng-href="#!/videos/{{item.id}}">{{item.nombre}}</a>
           </td>
           <td>
-            <button class="tableButton-small" ng-click="vm.editarConcurso(item);">Edit</button>
+            <button class="tableButton-small" ng-click="vm.editarConcurso(item)">Edit</button>
           </td>
           <td>
-            <button class="tableButton-small" ng-click="vm.removerConcurso(item.id);">Remove</button>
+            <button class="tableButton-small" ng-click="vm.removerConcurso(item.id)">Remove</button>
           </td>
 
         </tr>

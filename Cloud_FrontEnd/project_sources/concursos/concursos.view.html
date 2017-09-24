@@ -26,7 +26,7 @@
         <tr ng-repeat="item in vm.concursos" ng-value="{{item}}" class="move">
 
           <td>
-            <a ng-href="#!/videos/{{item.id}}">{{item.nombre}}</a>
+            <a ng-href="#!/videos/{{item.id}}" ng-click="vm.irAConcurso(item.id)">{{item.nombre}}</a>
           </td>
 
         </tr>

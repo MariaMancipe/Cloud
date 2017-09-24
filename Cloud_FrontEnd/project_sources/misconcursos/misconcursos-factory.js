@@ -1,12 +1,13 @@
 (function(){
 	angular
 	.module('app')
-	.factory('ConcursosFactory', ConcursosFactory);
+	.factory('MisConcursosFactory', MisConcursosFactory);
 
-	ConcursosFactory.$inject = ['$http', '$log'];
+	MisConcursosFactory.$inject = ['$http', '$log'];
 
-	function ConcursosFactory( $http, $log){
-		path_to_service="http://localhost:3000/concursos";
+	function MisConcursosFactory( $http, $log){
+		path_to_service="http://34.236.13.118:9292/concursos";
+		path_to_get="http://34.236.13.118:9292/concursos/usuario/:";
 
 		return {
 			getConcursos: getConcursos,
@@ -16,10 +17,10 @@
 			deleteConcursoID: deleteConcursoID
 		};
 
-		function getConcursos(){
+		function getConcursos(extension){
 			var reponse;
 
-			$http.get(path_to_service).
+			$http.get(path_to_get + extension).
 	        then(function(response) {
 	            reponse = response.data;
 	        	return reponse;

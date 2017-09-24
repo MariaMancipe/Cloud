@@ -1,9 +1,9 @@
 (function(){
-	
-		function MisConcursosController($scope, $rootScope, $http, $uibModal, ConcursosFactory){
-			var vm = this;
 
+		function MisConcursosController($scope, $rootScope, $http, $uibModal, MisConcursosFactory){
+			var vm = this;
 			vm.concursos;
+			var rutaAcceso = "http://34.236.13.118:9292/concursos";
 
 			vm.nuevoconcurso={};
 			vm.instanciaModalConcurso;
@@ -16,7 +16,7 @@
 			vm.nuevoconcurso.picture="";
 
 	        vm.actualizar = function(){
-	        	$http.get("http://0.0.0.0:3000/concursos").
+	        	$http.get(rutaAcceso).
 		        then(function(response) {
 		            vm.concursos  = response.data;
 		        },function(error){
@@ -25,7 +25,7 @@
 	        }
 
 			vm.getConcursos = function(){
-				vm.concursos = ConcursosFactory.getConcursos();
+				vm.concursos = MisConcursosFactory.getConcursos($rootScope.id_usuario);
 			}
 
 			vm.crearconcurso = function(item){
@@ -49,18 +49,15 @@
 			    fd.append("url", vm.nuevoconcurso.url);
 			    fd.append("descripcion", vm.nuevoconcurso.descripcion);
 
-
-			    console.log(fd);
-			    
 			    //File upload
 			    
-			    $http.post("http://0.0.0.0:3000/concursos", fd, {
+			    $http.post(rutaAcceso, fd, {
 			        withCredentials: false,
 			        headers: {'Content-Type': undefined},
 			        transformRequest: angular.identity,
 			        params : fd
 			    }).then(function successCallback(response) {
-			    	$http.get("http://0.0.0.0:3000/concursos").
+			    	$http.get(rutaAcceso).
 			        then(function(response) {
 			            vm.concursos  = response.data;
 			        },function(error){
@@ -88,7 +85,7 @@
 			vm.removerConcurso = function(concursoID){
 				$http.delete(path_to_service+'/'+concursoID)
 				.then(function(response) {
-		            $http.get("http://0.0.0.0:3000/concursos").
+		            $http.get(rutaAcceso).
 			        then(function(response) {
 			            vm.concursos  = response.data;
 			        },function(error){
@@ -114,7 +111,7 @@
 
 				$rootScope.modalInstance = $uibModal.open({
 					templateUrl: 'project_sources/concursos/nuevoconcurso.template.html',
-					controller: 'ConcursosController',
+					controller: 'MisConcursosController',
 					controllerAs: 'vm',
 					bindToController: true
 				});
@@ -124,9 +121,9 @@
 		}
 	angular
 		.module('app')
-		.controller('ConcursosController', ConcursosController);
+		.controller('MisConcursosController', MisConcursosController);
 
-		ConcursosController.$inject = ['$scope','$rootScope', '$http', '$uibModal', 'ConcursosFactory'];
+		MisConcursosController.$inject = ['$scope','$rootScope', '$http', '$uibModal', 'MisConcursosFactory'];
 
 
 })();
