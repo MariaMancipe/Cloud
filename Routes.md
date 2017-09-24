@@ -3,15 +3,16 @@
   * /usuarios/:idUsuario -- GET
   * /usuarios -- POST
 # Concurso
-  * /concursos/:idConcurso --GET
   * /concursos --GET
-  * /concursos -- POST
-  * /concursos/:idConcurso -- UPDATE
-  * /concursos/:idConcurso -- DELETE
+  * /concursos/usuario/:usuario_id --GET
+  * /concursos/:id --GET
+  * /concursos/usuario/:usuario_id/:id --GET
+  * /concursos/usuario/:usuario_id --POST
+  * /concursos/usuario/:usuario_id/:id --UPDATE
+  * /concursos/usuario/:usuario_id/:id --DELETE
 # Video
-  * /videos/:idvideo -- GET
-  * /videos/byConcurso/:idConcurso --GET
   * /videos -- GET
-  * /videos/:idConcurso/:idvideo -- POST
-  * /videos/:codec -- GET
-  * /videos/:estado -- GET 
+  * /videos/:idvideo -- GET
+  * /videos/concurso/:concurso_id --GET
+  * /videos/concurso/:concurso_id --POST
+  * /videos/estado/:estado -- GET 
