@@ -72,6 +72,7 @@
 			    	console.log('Not uploaded');
 			  });
 			    $rootScope.modalInstance.close('a');
+			    vm.actualizar();
 
 		    	/*
 				r.onloadend = function(e) {
@@ -122,9 +123,11 @@
 
 			};
 
-			vm.irAConcurso = function(elId)
+			vm.irAConcurso = function(elConcurso)
 			{
-				$rootScope.concurso_id = elId;
+				$rootScope.concurso_id = elConcurso.id;
+				console.log(elConcurso);
+				$rootScope.id_usuario_concurso = elConcurso.usuario_id;
 			};
 
 			vm.actualizar();

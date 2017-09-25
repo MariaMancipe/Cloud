@@ -51,7 +51,7 @@
 
 			    //File upload
 			    
-			    $http.post(rutaAcceso, fd, {
+			    $http.post(rutaAcceso + "/usuario/" + $rootScope.id_usuario, fd, {
 			        withCredentials: false,
 			        headers: {'Content-Type': undefined},
 			        transformRequest: angular.identity,

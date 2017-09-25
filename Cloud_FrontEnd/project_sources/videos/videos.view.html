@@ -15,7 +15,7 @@
     </p>
   </div>
   <ul>
-   <div class="vidContainer" ng-repeat="item in vm.vids | orderBy:vm.orderBy | startFrom: vm.currentPage * vm.pageSize | limitTo:vm.pageSize ">
+   <div class="vidContainer" ng-hide="vm.debeEsconderse(item)" ng-repeat="item in vm.vids | orderBy:vm.orderBy | startFrom: vm.currentPage * vm.pageSize | limitTo:vm.pageSize ">
    <!--<div ng-repeat="item in vm.vids" class="vidContainer">-->
       <div class=" w3-display-container p_padding">
         <div class="w3-display-topleft w3-black w3-padding">{{item.nombre}}</div>
@@ -25,7 +25,7 @@
           </vg-media>
         </videogular>-->
         <video width="400" controls>
-          <source src="http://0.0.0.0:3000{{item.video.url}}" type="video/mp4">
+          <source src="http://127.0.0.1:9292{{item.video.url}}" type="video/mp4">
           Your browser does not support HTML5 video.
         </video>
         <!--<img src="https://www.w3schools.com/w3images/house3.jpg" alt="House" style="width:100%">-->

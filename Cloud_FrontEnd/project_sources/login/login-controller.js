@@ -30,7 +30,6 @@
 			}
 
 			vm.nuevoUsuario = function(usuario){
-				console.log('Register');
 				$rootScope.loggeado = true;	
 				$rootScope.nombreApellido = vm.nombreusuario;	
 

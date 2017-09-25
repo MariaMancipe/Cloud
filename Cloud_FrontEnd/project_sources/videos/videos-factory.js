@@ -18,7 +18,9 @@
 			postVideo: postVideo,
 			getVideoCodec: getVideoCodec,
 			getEstadoVideo: getEstadoVideo,
-			getConcurso: getConcurso
+			getConcurso: getConcurso,
+			getInfoConcurso : getInfoConcurso,
+			getInfoVideos : getInfoVideos
 
 		};
 
@@ -33,21 +35,30 @@
 	        return reponse;
 		}
 
-		function getInfoConcurso(idDelConcurso, metodoExito, metodoFail){
-			var reponse;
-				$http.get(rutaAcceso+"/concursos/"+$rootScope.concurso_id).then(function successCallback(response) {
-		    	metodoExito(response);
-			  	}, function errorCallback(response) {
-		    	metodoFail();
-			  }); 
+		function getInfoConcurso(idDelConcurso, metodoExito){
+			// Simple GET request example:
+			$http({
+  			method: 'GET',
+  			url: rutaAcceso+"/concursos/"+idDelConcurso
+			}).then(function successCallback(response) {
+    		metodoExito(response);
+  			}, function errorCallback(response) {
+    		// called asynchronously if an error occurs
+    		// or server returns response with an error status.
+  			});
 		}
 
-		function getInfoVideos(idDelConcurso, metodoExito, metodoFail){
-			$http.get(rutaAcceso + "/videos/concurso/:"+$rootScope.concurso_id).then(function successCallback(response) {
-		    	metodoExito(response);
-			  	}, function errorCallback(response) {
-		    	metodoFail();
-			  }); 
+		function getInfoVideos(idDelConcurso, metodoExito){
+			var reponse = '';
+
+			
+			$http.get(rutaAcceso + "/videos/concurso/"+idDelConcurso).
+	        then(function(response) {
+	            reponse = response.data;
+	            metodoExito(response);
+	        });
+
+	        return reponse;
 		        
 		}
 
@@ -83,7 +94,7 @@
 		function getConcurso(idConcurso){
 			reponse = '';
 
-			$http.get('http://localhost:3000/concursos/'+idConcurso).
+			$http.get(rutaAcceso + "/concursos/"+idConcurso).
 	        then(function(response) {
 	            reponse = response.data;
 	            console.log('Concurso Actual:');

@@ -36,20 +36,34 @@
 			vm.nuevovideo.fecha_carga = "";
 			vm.nuevovideo.estado = "En conversion";
 
+			if($rootScope.id_usuario == undefined)
+			{
+				$rootScope.id_usuario = -1;
+			}
+
 			vm.metodoExitoConcurso = function(respuesta)
 		    {
-		    		console.log(respuesta);
-		            vm.concursoActual = respuesta.data;
+		    		vm.concursoActual = respuesta.data;
 		            vm.idconcursoActual = vm.concursoActual.id;
-		            console.log('Concurso Actual:');
-		            console.log(vm.concursoActual);
 		    }
 
 		    vm.metodoExitoVideos = function(respuesta)
 		    {
 		    		vm.vids = respuesta.data;
-		            console.log('Videos del Concurso Actual:');
-		            console.log(vm.vids);
+		    }
+
+		    vm.debeEsconderse = function(elItem)
+		    {
+		    	//concurso_id
+		    	console.log($rootScope.id_usuario + " - " + $rootScope.id_usuario_concurso);
+		    	if(elItem.estado != 2 && $rootScope.id_usuario != $rootScope.id_usuario_concurso)
+		    	{
+		    		return true;
+		    	}
+		    	else
+		    	{
+		    		return false;
+		    	}
 		    }
 
 		    vm.metodoFailConcurso = function(respuesta)
@@ -59,10 +73,8 @@
 
 			vm.init = function(){
 				//Esto deberia ir en el factory pero por naturaleza asincrona no funciona bien
-				console.log(VideosFactory);
-				console.log(VideosFactory.cargarInfoConcurso);
-				VideosFactory.getInfoConcurso($rootScope.concurso_id, vm.metodoExitoConcurso, vm.metodoFailConcurso);
-				VideosFactory.getInfoVideos($rootScope.concurso_id, vm.metodoExitoVideos, vm.metodoFailConcurso);
+				VideosFactory.getInfoConcurso($rootScope.concurso_id, vm.metodoExitoConcurso);
+				VideosFactory.getInfoVideos($rootScope.concurso_id, vm.metodoExitoVideos);
 
 		        
 			}
@@ -75,16 +87,14 @@
 
 		    //Subir un video------------
 			vm.subirVideo = function(){
-				console.log('opening pop up');
 
-				var modalInstance = $uibModal.open({
+				$rootScope.modalInstance = $uibModal.open({
 					templateUrl: 'project_sources/videos/nuevovideo.template.html',
 					controller: 'VideosController',
 					controllerAs: 'vm',
 					bindToController: true
 				});
 			}
-			//angular.module('app')
 				;
 
 			vm.procesarNuevoVideo = function(){
@@ -110,9 +120,7 @@
 			    fd.append("fecha_carga", vm.nuevovideo.fecha_carga);
 			    fd.append("estado", vm.nuevovideo.estado);
 
-			    console.log(fd);
-
-				//File upload
+			    //File upload
 		    
 			    $http.post(rutaAcceso + "/videos/concurso/"+$routeParams.nombre, fd, {
 			        withCredentials: false,
@@ -124,6 +132,8 @@
 				  }, function errorCallback(response) {
 			    	console.log('Not uploaded')
 				  });
+
+			    $rootScope.modalInstance.close('a');
 
 			}
 
