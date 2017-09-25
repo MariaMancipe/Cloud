@@ -15,4 +15,4 @@
   * /videos/:idvideo -- GET
   * /videos/concurso/:concurso_id --GET
   * /videos/concurso/:concurso_id --POST
-  * /videos/estado/:estado -- GET 
+  * /videos/:concurso_id/estado/:estado -- GET 
