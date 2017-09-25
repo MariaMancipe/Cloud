@@ -1,10 +1,10 @@
 class Video < ApplicationRecord
   belongs_to :concurso
-  #validates_presence_of :nombre, :fecha_carga, :nombre_concursante, :apellido_concursante, :correo_concursante
   mount_uploader :video, VideoUploader
-  after_create :set_ruta_convertida
+  before_save :mark_state
 
-  def set_ruta_convertida
-    puts "self.nombre"
+  def mark_state
+    self.estado ||= 0
   end
+  #Validations
 end

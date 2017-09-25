@@ -21,7 +21,7 @@ class VideosController < ApplicationController
   # POST /videos/concurso/:concurso_id
   def create
     @concurso.videos.create!(video_params)
-    json_response(@concurso, :created)
+    json_response(@concurso.videos, :created)
   end
 
   # PUT /concursos/:concurso_id/videos/:id
@@ -30,13 +30,7 @@ class VideosController < ApplicationController
     head :no_content
   end
 
-  #GET /videos/codec/:codec
-  def codec
-    search_codec
-    json_response(@videos_codec)
-  end
-
-  #GET /videos/estado/:estado
+  #GET /videos/:concurso_id/estado/:estado
   def estado
     search_estado
     json_response(@videos_estado)
@@ -47,7 +41,7 @@ class VideosController < ApplicationController
   private
 
   def video_params
-    params.permit(:nombre, :duracion, :codec, :nombre_concursante, :apellido_concursante, :correo_concursante, :mensaje_concursante, :fecha_carga, :video, :estado, :concurso_id)
+    params.permit(:nombre, :duracion, :nombre_concursante, :apellido_concursante, :correo_concursante, :mensaje_concursante, :fecha_carga, :video, :estado, :concurso_id)
 
   end
 
@@ -55,12 +49,8 @@ class VideosController < ApplicationController
     @concurso = Concurso.find(params[:concurso_id])
   end
 
-  def search_codec
-    @videos_codec = Video.find(params[:codec])
-  end
-
   def search_estado
-    @videos_estado = Video.find(params[:estado])
+    @videos_estado = @concurso.videos.find_by!(estado: params[:estado]) if @concurso
   end
 
   def set_concurso_video

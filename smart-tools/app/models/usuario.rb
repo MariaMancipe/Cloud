@@ -1,3 +1,5 @@
 class Usuario < ApplicationRecord
-  validates_presence_of :nombre, :apellido, :empresa, :correo, :clave
+  has_many :concursos, dependent: :destroy
+
+  #validations
 end

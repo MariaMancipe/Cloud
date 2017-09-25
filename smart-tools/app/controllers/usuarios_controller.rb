@@ -10,7 +10,7 @@ class UsuariosController < ApplicationController
 
   #POST /usuarios
   def create
-    @usuarios = Usuario.create!(usuario_params)
+    @usuario = Usuario.create!(usuario_params)
     json_response(@usuario, :created)
   end
 
@@ -34,11 +34,10 @@ class UsuariosController < ApplicationController
   private
 
   def usuario_params
-    params.permit(:nombre, :apellido, :correo, :empresa, :rol, :clave)
+    params.permit(:nombre, :apellido, :correo, :empresa, :clave)
   end
 
   def set_usuario
     @usuario = Usuario.find(params[:id])
   end
-
 end

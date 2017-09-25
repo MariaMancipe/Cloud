@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170904171815) do
+ActiveRecord::Schema.define(version: 20170921170716) do
 
   create_table "concursos", force: :cascade do |t|
     t.string "nombre"
@@ -18,9 +18,11 @@ ActiveRecord::Schema.define(version: 20170904171815) do
     t.datetime "fecha_fin"
     t.string "url"
     t.string "descripcion"
+    t.integer "usuario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"
+    t.index ["usuario_id"], name: "index_concursos_on_usuario_id"
   end
 
   create_table "usuarios", force: :cascade do |t|
@@ -28,7 +30,6 @@ ActiveRecord::Schema.define(version: 20170904171815) do
     t.string "apellido"
     t.string "correo"
     t.string "empresa"
-    t.string "rol"
     t.string "clave"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,7 +38,6 @@ ActiveRecord::Schema.define(version: 20170904171815) do
   create_table "videos", force: :cascade do |t|
     t.string "nombre"
     t.integer "duracion"
-    t.string "codec"
     t.datetime "fecha_carga"
     t.integer "estado"
     t.string "nombre_concursante"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20170904171815) do
     t.string "correo_concursante"
     t.string "mensaje_concursante"
     t.string "video_convertido"
+    t.string "video_original"
     t.integer "concurso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

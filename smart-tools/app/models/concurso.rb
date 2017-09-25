@@ -1,5 +1,8 @@
 class Concurso < ApplicationRecord
+  belongs_to :usuario
+
   has_many :videos, dependent: :destroy
-  #validates_presence_of :nombre, :fecha_inicio, :fecha_fin, :url, :descripcion
+
   mount_uploader :picture, PictureUploader
+  #Validations
 end
