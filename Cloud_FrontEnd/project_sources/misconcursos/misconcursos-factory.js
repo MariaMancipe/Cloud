@@ -6,8 +6,8 @@
 	MisConcursosFactory.$inject = ['$http', '$log'];
 
 	function MisConcursosFactory( $http, $log){
-		path_to_service="http://localhost:9292/concursos";
-		path_to_get="http://localhost:9292/concursos/usuario/:";
+		path_to_service="http://0.0.0.0:9292/concursos";
+		path_to_get="http://0.0.0.0:9292/concursos/usuario/:";
 
 		return {
 			getConcursos: getConcursos,

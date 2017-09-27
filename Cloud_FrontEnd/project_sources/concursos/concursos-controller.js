@@ -2,7 +2,7 @@
 	
 		function ConcursosController($scope, $rootScope, $http, $uibModal, ConcursosFactory){
 			var vm = this;
-			var rutaAcceso = "http://localhost:9292/concursos";
+			var rutaAcceso = "http://0.0.0.0:9292/concursos";
 
 			vm.concursos;
 
