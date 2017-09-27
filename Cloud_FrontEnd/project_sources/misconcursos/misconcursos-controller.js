@@ -3,7 +3,7 @@
 		function MisConcursosController($scope, $rootScope, $http, $uibModal, MisConcursosFactory){
 			var vm = this;
 			vm.concursos;
-			var rutaAcceso = "http://0.0.0.0:9292/concursos";
+			var rutaAcceso = "http://127.0.0.1:9292/concursos";
 
 			vm.nuevoconcurso={};
 			vm.instanciaModalConcurso;

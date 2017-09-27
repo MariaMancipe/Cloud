@@ -6,8 +6,8 @@
 	VideosFactory.$inject = ['$http', '$log'];
 
 	function VideosFactory( $http, $log){
-		path_to_service="http://0.0.0.0/videos";
-		var rutaAcceso = "http://0.0.0.0:9292";
+		path_to_service="http://127.0.0.1:9292/videos";
+		var rutaAcceso = "http://127.0.0.1:9292";
 
 		var reponse='';
 

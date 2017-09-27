@@ -6,7 +6,7 @@
 	ConcursosFactory.$inject = ['$http', '$log'];
 
 	function ConcursosFactory( $http, $log){
-		path_to_service="http://0.0.0.0:9292/concursos";
+		path_to_service="http://127.0.0.1:9292/concursos";
 
 		return {
 			getConcursos: getConcursos,
