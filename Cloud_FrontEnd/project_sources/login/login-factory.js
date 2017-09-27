@@ -1,7 +1,7 @@
 (function(){
 
 	function LoginFactory( $http, $log){
-		path_to_service="http://34.236.13.118:9292/usuarios";
+		path_to_service="http://localhost/usuarios";
 
 		reponse = {};
 
