@@ -18,12 +18,12 @@
 # end
 #job_type :runner, "cd :path && rvm 2.0.0 do bundle exec script/rails runner -e :environment ':task' :output"
 
-every 1.days do
+every 2.minutes do
   rake "cron:deliver_email"
 end
 
-every 2.minutes do
-  runner "#{ENV['HOME']}/smart-tools/lib/video_converter.rb"
+every 5.minutes do
+  rake "cron:convert_video"
 end
 
 #every 2.minutes do
