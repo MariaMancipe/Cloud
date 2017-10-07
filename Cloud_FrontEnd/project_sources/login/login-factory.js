@@ -12,8 +12,8 @@
 		};
 
 		function login( json, sucess, fail ){
-
-			$http.get(path_to_service).then(function successCallback(response) {
+			///usuarios/:correo/:clave
+			$http.get(path_to_service+"/credenciales/"+json.correo+"/"+json.clave).then(function successCallback(response) {
 		    	//:v
 		    	reponse = response.data;
 		    	sucess(response.data);
