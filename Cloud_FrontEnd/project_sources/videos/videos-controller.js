@@ -15,7 +15,7 @@
 
 		function VideosController($scope, $rootScope, $http, $routeParams, $uibModal, $sce, VideosFactory, config){
 			var vm = this;
-			var rutaAcceso = "http://52.6.65.14:9292";
+			var rutaAcceso = config.baseURL + "/videos";
 
 			vm.idconcursoActual='';
 

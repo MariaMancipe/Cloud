@@ -11,16 +11,15 @@
 			postUser: postUser
 		};
 
-		function login( json ){
+		function login( json, sucess, fail ){
 
-			$http.get(path_to_service).
-	        then(function(response) {
-	            reponse = response.data;
-	        }, function error(reason){
-	        	reponse = 'No se pudo loggear';
-	        });
-
-	        return reponse;
+			$http.get(path_to_service).then(function successCallback(response) {
+		    	//:v
+		    	reponse = response.data;
+		    	sucess(response.data);
+			  }, function errorCallback(response) {
+		    	console.log('Not logged');
+			  }); 
 		}
 
 		function postUser(usuario, sucess, fail){

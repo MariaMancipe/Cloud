@@ -20,8 +20,9 @@
 
 			vm.guardarId = function(dataDelPost)
 			{
+				//console.log(dataDelPost.data);
+				console.log("Hello");
 				$rootScope.id_usuario = dataDelPost.id;
-				console.log($rootScope.id_usuario);
 			}
 
 			vm.fallo = function()
@@ -51,11 +52,10 @@
 			};
 
 			vm.login = function(){
-				console.log('Login');
 					$rootScope.loggeado = true;					
-					//vm.postJSON.correo = vm.email;
-					//vm.postJSON.clave = vm.password;
-					//var resuelve = LoginFactory.login( vm.postJSON );
+					vm.postJSON.correo = vm.email;
+					vm.postJSON.clave = vm.password;
+					var resuelve = LoginFactory.login( vm.postJSON, vm.guardarId, vm.fallo );
 					//console.log(resuelve);
 				$rootScope.modalInstance.close('a');
 			};;
