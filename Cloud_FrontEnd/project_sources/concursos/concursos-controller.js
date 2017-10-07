@@ -73,6 +73,7 @@
 			  });
 			    $rootScope.modalInstance.close('a');
 			    vm.actualizar();
+			    window.location.reload(false); 
 
 		    	/*
 				r.onloadend = function(e) {

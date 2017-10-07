@@ -26,18 +26,20 @@
 			{
 				$rootScope.globals = {
 					currentUser:{
-						idUsuario:dataDelPost
+						idUsuario:dataDelPost.id
 					}
 				};
-
-				$rootScope.id_usuario = dataDelPost.id;
 
 				var cookiExp = new Date();
 				cookieExp.setDate(cookieExp.getDate() + 7);
 				//Las cookies duran 7 dias a menos que el usuario cierre sesion
 				$cookies.putObject('globals', $rootScope.globals, {expires:cookieExp});
+				
+				console.log("Hello");
 
 				console.log($rootScope.id_usuario);
+				//console.log(dataDelPost.data);
+				$rootScope.id_usuario = dataDelPost.id;
 			}
 
 			vm.fallo = function()
@@ -67,11 +69,10 @@
 			};
 
 			vm.login = function(){
-				console.log('Login');
 					$rootScope.loggeado = true;					
-					//vm.postJSON.correo = vm.email;
-					//vm.postJSON.clave = vm.password;
-					//var resuelve = LoginFactory.login( vm.postJSON );
+					vm.postJSON.correo = vm.email;
+					vm.postJSON.clave = vm.password;
+					var resuelve = LoginFactory.login( vm.postJSON, vm.guardarId, vm.fallo );
 					//console.log(resuelve);
 				$rootScope.modalInstance.close('a');
 			};;
