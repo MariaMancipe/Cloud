@@ -3,7 +3,7 @@
     <div>
       <h3 class="formHeader"> Inicia sesión</h3>
         <label class="formLabel">E-mail</label><br>
-        <input class="loginForm" name="nombreusuario" ng-model="vm.nombreusuario" md-autofocus required /><br>
+        <input class="loginForm" name="nombreUsuario" ng-model="vm.email" md-autofocus required /><br>
         <label class="formLabel">Contraseña</label><br>
         <input class="loginForm" type="password" name="password" ng-model="vm.password" required /><br>
       <button class="formButton" type="submit" ng-disabled="loginForm.$invalid" ng-click="vm.login()" >Login</button>

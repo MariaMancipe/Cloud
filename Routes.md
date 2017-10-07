@@ -2,7 +2,7 @@
 # Usuario
   * /usuarios/:idUsuario -- GET
   * /usuarios -- POST
-  * /usuarios/:correo/:clave -- GET
+  * /usuarios/credenciales/:correo/:clave -- GET
 # Concurso
   * /concursos --GET
   * /concursos/usuario/:usuario_id --GET
