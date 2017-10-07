@@ -1,7 +1,7 @@
 (function(){
 
-	function LoginFactory( $http, $log){
-		path_to_service="http://52.6.65.14:9292/usuarios";
+	function LoginFactory( $http, $log, config){
+		path_to_service=config.baseURL+"/usuarios";
 
 		reponse = {};
 
@@ -48,6 +48,6 @@
 	.module('app')
 	.factory('LoginFactory', LoginFactory);
 
-	LoginFactory.$inject = ['$http', '$log'];
+	LoginFactory.$inject = ['$http', '$log', 'config'];
 
 })();

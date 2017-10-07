@@ -14,7 +14,10 @@
 			}
 		}] )
 		//MainController )
-		.config( config );
+		.config( config )
+		.constant('config', {
+			baseURL: 'http://localhost:9292'
+		});
 /*
 	function MainController( $scope, $modal ) {
 			$scope.showDialog = function($event){

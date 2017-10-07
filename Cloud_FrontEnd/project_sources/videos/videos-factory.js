@@ -3,11 +3,11 @@
 	.module('app')
 	.factory('VideosFactory', VideosFactory);
 
-	VideosFactory.$inject = ['$http', '$log'];
+	VideosFactory.$inject = ['$http', '$log', 'config'];
 
-	function VideosFactory( $http, $log){
-		path_to_service="http://52.6.65.14:9292/videos";
-		var rutaAcceso = "http://52.6.65.14:9292";
+	function VideosFactory( $http, $log, config){
+		path_to_service=config.baseURL+"/videos";
+		var rutaAcceso = "config.baseURL";
 
 		var reponse='';
 

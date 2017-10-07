@@ -1,6 +1,6 @@
 (function(){
 	
-		function LoginController($scope,$rootScope, LoginFactory){
+		function LoginController($scope,$rootScope, LoginFactory, config){
 				console.log('opening pop up');
 
 			var vm = this;
@@ -66,7 +66,7 @@
 		.module('app')
 		.controller('LoginController', LoginController);
 
-		LoginController.$inject = ['$scope', '$rootScope','LoginFactory'];
+		LoginController.$inject = ['$scope', '$rootScope','LoginFactory', 'config'];
 
 
 })();

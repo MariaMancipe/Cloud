@@ -10,10 +10,10 @@
 			    }
 			});
 
-		VideosController.$inject = ['$scope', '$rootScope', '$http', '$routeParams','$uibModal', '$sce', 'VideosFactory'];
+		VideosController.$inject = ['$scope', '$rootScope', '$http', '$routeParams','$uibModal', '$sce', 'VideosFactory', 'config'];
 
 
-		function VideosController($scope, $rootScope, $http, $routeParams, $uibModal, $sce, VideosFactory){
+		function VideosController($scope, $rootScope, $http, $routeParams, $uibModal, $sce, VideosFactory, config){
 			var vm = this;
 			var rutaAcceso = "http://52.6.65.14:9292";
 

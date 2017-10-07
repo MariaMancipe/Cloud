@@ -3,11 +3,11 @@
 	.module('app')
 	.factory('MisConcursosFactory', MisConcursosFactory);
 
-	MisConcursosFactory.$inject = ['$http', '$log'];
+	MisConcursosFactory.$inject = ['$http', '$log', 'config'];
 
-	function MisConcursosFactory( $http, $log){
-		path_to_service="http://52.6.65.14:9292/concursos";
-		path_to_get="http://52.6.65.14:9292/concursos/usuario/:";
+	function MisConcursosFactory( $http, $log, config){
+		path_to_service=config.baseURL+"/concursos";
+		path_to_get=config.baseURL+"/concursos/usuario/:";
 
 		return {
 			getConcursos: getConcursos,

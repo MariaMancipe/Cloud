@@ -1,9 +1,9 @@
 (function(){
 
-		function MisConcursosController($scope, $rootScope, $http, $uibModal, MisConcursosFactory){
+		function MisConcursosController($scope, $rootScope, $http, $uibModal, MisConcursosFactory, config){
 			var vm = this;
 			vm.concursos;
-			var rutaAcceso = "http://52.6.65.14:9292/concursos";
+			var rutaAcceso = config.baseURL+"/concursos";
 
 			vm.nuevoconcurso={};
 			vm.instanciaModalConcurso;
@@ -123,7 +123,7 @@
 		.module('app')
 		.controller('MisConcursosController', MisConcursosController);
 
-		MisConcursosController.$inject = ['$scope','$rootScope', '$http', '$uibModal', 'MisConcursosFactory'];
+		MisConcursosController.$inject = ['$scope','$rootScope', '$http', '$uibModal', 'MisConcursosFactory', 'config'];
 
 
 })();

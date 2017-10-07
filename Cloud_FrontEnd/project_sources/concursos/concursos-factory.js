@@ -3,10 +3,10 @@
 	.module('app')
 	.factory('ConcursosFactory', ConcursosFactory);
 
-	ConcursosFactory.$inject = ['$http', '$log'];
+	ConcursosFactory.$inject = ['$http', '$log', 'config'];
 
-	function ConcursosFactory( $http, $log){
-		path_to_service="http://52.6.65.14:9292/concursos";
+	function ConcursosFactory( $http, $log, config){
+		path_to_service=config.baseURL+"/concursos";
 
 		return {
 			getConcursos: getConcursos,

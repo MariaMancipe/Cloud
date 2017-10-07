@@ -1,8 +1,8 @@
 (function(){
 	
-		function ConcursosController($scope, $rootScope, $http, $uibModal, ConcursosFactory){
+		function ConcursosController($scope, $rootScope, $http, $uibModal, ConcursosFactory, config){
 			var vm = this;
-			var rutaAcceso = "http://52.6.65.14:9292/concursos";
+			var rutaAcceso = config.baseURL+"/concursos";
 
 			vm.concursos;
 
@@ -136,7 +136,7 @@
 		.module('app')
 		.controller('ConcursosController', ConcursosController);
 
-		ConcursosController.$inject = ['$scope','$rootScope', '$http', '$uibModal', 'ConcursosFactory'];
+		ConcursosController.$inject = ['$scope','$rootScope', '$http', '$uibModal', 'ConcursosFactory', 'config'];
 
 
 })();
