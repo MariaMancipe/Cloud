@@ -113,13 +113,13 @@
 			    fd.append("video", file);
 			    fd.append("nombre", vm.nuevovideo.titulo);
 			    fd.append("mensaje_concursante", vm.nuevovideo.mensaje_concursante);
-			    fd.append("duracion", vm.nuevovideo.duracion);
+			    fd.append("duracion", new Date().getTime());
 			    fd.append("nombre_concursante", vm.nuevovideo.nombre_concursante);
 			    fd.append("apellido_concursante", vm.nuevovideo.apellido_concursante);
 			    fd.append("correo_concursante", vm.nuevovideo.correo_concursante);
 			    fd.append("fecha_carga", vm.nuevovideo.fecha_carga);
 			    fd.append("estado", vm.nuevovideo.estado);
-			    fd.append("fecha_carga", new Date().getTime());
+			    //fd.append("fecha_carga", new Date().getTime());
 
 			    //File upload
 		    
