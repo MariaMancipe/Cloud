@@ -16,7 +16,7 @@
 		//MainController )
 		.config( config )
 		.constant('config', {
-			baseURL: 'http://localhost:9292'
+			baseURL: 'http://0.0.0.0:9292'
 		});
 /*
 	function MainController( $scope, $modal ) {

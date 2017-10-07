@@ -1,6 +1,6 @@
 (function(){
 	
-		function LoginController($scope,$rootScope, LoginFactory, config){
+		function LoginController($scope,$rootScope, LoginFactory, $cookies, config){
 				console.log('opening pop up');
 
 			var vm = this;
@@ -16,11 +16,27 @@
 
 			$rootScope.loggeado = false;
 
+			vm.clearCredential = function(){
+				$rootScope.globals = {};
+				$cookies.remove('globals');
+			}
 
 
 			vm.guardarId = function(dataDelPost)
 			{
+				$rootScope.globals = {
+					currentUser:{
+						idUsuario:dataDelPost
+					}
+				};
+
 				$rootScope.id_usuario = dataDelPost.id;
+
+				var cookiExp = new Date();
+				cookieExp.setDate(cookieExp.getDate() + 7);
+				//Las cookies duran 7 dias a menos que el usuario cierre sesion
+				$cookies.putObject('globals', $rootScope.globals, {expires:cookieExp});
+
 				console.log($rootScope.id_usuario);
 			}
 
@@ -66,7 +82,7 @@
 		.module('app')
 		.controller('LoginController', LoginController);
 
-		LoginController.$inject = ['$scope', '$rootScope','LoginFactory', 'config'];
+		LoginController.$inject = ['$scope', '$rootScope','LoginFactory','$cookies', 'config'];
 
 
 })();
