@@ -119,6 +119,7 @@
 			    fd.append("correo_concursante", vm.nuevovideo.correo_concursante);
 			    fd.append("fecha_carga", vm.nuevovideo.fecha_carga);
 			    fd.append("estado", vm.nuevovideo.estado);
+			    fd.append("fecha_carga", new Date().getTime());
 
 			    //File upload
 		    
