@@ -1,6 +1,6 @@
 (function(){
 	
-		function LoginController($scope,$rootScope, LoginFactory, $cookies, config){
+		function LoginController($scope,$rootScope, LoginFactory, config){
 				console.log('opening pop up');
 
 			var vm = this;
@@ -24,22 +24,22 @@
 
 			vm.guardarId = function(dataDelPost)
 			{
-				$rootScope.globals = {
-					currentUser:{
-						idUsuario:dataDelPost.id
-					}
-				};
+				//$rootScope.globals = {
+				//	currentUser:{
+				//		idUsuario:dataDelPost.id
+				//	}
+				//};
 
-				var cookiExp = new Date();
-				cookieExp.setDate(cookieExp.getDate() + 7);
+				//var cookiExp = new Date();
+				//cookieExp.setDate(cookieExp.getDate() + 7);
 				//Las cookies duran 7 dias a menos que el usuario cierre sesion
-				$cookies.putObject('globals', $rootScope.globals, {expires:cookieExp});
+				//$cookies.putObject('globals', $rootScope.globals, {expires:cookieExp});
 				
-				console.log("Hello");
+				//console.log("Hello");
 
-				console.log($rootScope.id_usuario);
-				//console.log(dataDelPost.data);
-				$rootScope.id_usuario = dataDelPost.id;
+				//console.log($rootScope.id_usuario);
+				console.log(dataDelPost);
+				$rootScope.id_usuario = dataDelPost;
 			}
 
 			vm.fallo = function()
@@ -68,8 +68,9 @@
 
 			};
 
-			vm.login = function(){
-					$rootScope.loggeado = true;					
+			vm.login = function(usuario){
+					$rootScope.loggeado = true;		
+					console.log(":v");			
 					vm.postJSON.correo = vm.email;
 					vm.postJSON.clave = vm.password;
 					var resuelve = LoginFactory.login( vm.postJSON, vm.guardarId, vm.fallo );
@@ -83,7 +84,7 @@
 		.module('app')
 		.controller('LoginController', LoginController);
 
-		LoginController.$inject = ['$scope', '$rootScope','LoginFactory','$cookies', 'config'];
+		LoginController.$inject = ['$scope', '$rootScope','LoginFactory', 'config'];
 
 
 })();
