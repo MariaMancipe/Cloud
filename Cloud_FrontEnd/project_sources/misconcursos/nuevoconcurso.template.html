@@ -1,4 +1,4 @@
-<div ng-controller = "ConcursosController" class="popUpForm">
+<div ng-controller = "MisConcursosController" class="popUpForm">
   <form name="newConcursoForm" enctype="multipart/form-data" method="post" >
     <div>
       <h3 class="formHeader"> Crear nuevo concurso</h3>
@@ -14,7 +14,7 @@
         <input class="loginForm" type="date" name="fecha_fin" ng-model="vm.nuevoconcurso.fecha_fin" required /><br>
         <label class="formLabel">Descripcion del premio</label><br>
         <input class="loginForm" name="url" ng-model="vm.nuevoconcurso.descripcion" required /><br>
-      <button class="formButton" type="submit" ng-click="vm.crearconcurso(vm.nuevoconcurso); vm.actualizar()" >Crear concurso</button>
+      <button class="formButton" type="submit" ng-click="vm.crearconcurso(vm.nuevoconcurso);" >Crear concurso</button>
     </div>
   </form>
 </div>

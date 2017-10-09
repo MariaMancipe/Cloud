@@ -15,6 +15,16 @@
 			vm.nuevoconcurso.descripcion="";
 			vm.nuevoconcurso.picture="";
 
+			vm.edicionID;
+
+			vm.editConcurso ={};
+			vm.editConcurso.nombre;
+			vm.editConcurso.url;
+			vm.editConcurso.descripcion;
+			vm.editConcurso.fecha_inicio;
+			vm.editConcurso.fecha_fin;
+
+
 	        vm.actualizar = function(){
 
 	        	$http.get(rutaAcceso+'/usuario/'+$rootScope.id_usuario).
@@ -35,12 +45,6 @@
 				var f = document.getElementById('file').files[0],
 				r = new FileReader();
 
-				/*var marco = {
-					concurso: concurso
-				};
-				var stringMarco = JSON.stringify(marco);
-				console.log(stringMarco);*/
-
 				var fd = new FormData();
 			    //Take the first selected file
 			    //fd.append("file", files[0]);
@@ -58,33 +62,19 @@
 			        headers: {'Content-Type': undefined},
 			        transformRequest: angular.identity,
 			        params : fd
-			    }).then(function (response) {
-			    	$http.get(rutaAcceso+'/usuario/'+$rootScope.id_usuario).
+			    }).then(function(response) {
+		            $http.get(rutaAcceso+'/usuario/'+$rootScope.id_usuario).
 			        then(function(response) {
 			            vm.concursos  = response.data;
 			            $scope.$apply();
-			            console.log('refreshed');
 			        },function(error){
-			            console.log('Refresh error');
 			        	alert('Could not complete request');
 			        });
-			    	console.log('uploaded');
-				  }, function (error) {
-			    	console.log('Not uploaded');
-			  });
+		        },function(error){
+		        	alert('Could not complete request');
+		        });
+
 			    $rootScope.modalInstance.close('a');
-
-		    	/*
-				r.onloadend = function(e) {
-					var data = e.target.result;
-					//TODO enviar al back para ser almacenada
-					//send your binary data via $http or $resource or do anything else with it
-				}
-
-				r.readAsBinaryString(f);
-
-				//Envia a registro el concurso
-				ConcursosFactory.postConcursos(vm.nuevoconcurso, f);*/
 			}
 			
 			vm.removerConcurso = function(concursoID){
@@ -104,7 +94,61 @@
 			};
 
 			vm.editarConcurso = function(item){
-				ConcursosFactory.getConcursoID(item);
+				$rootScope.edicionID = item.id;
+				vm.editConcurso = item;
+
+				console.log('opening edit pop up '+vm.editConcurso.nombre);
+				console.log($rootScope.edicionID);
+
+				$rootScope.modalInstance = $uibModal.open({
+					templateUrl: 'project_sources/misconcursos/editconcurso.template.html',
+					controller: 'MisConcursosController',
+					controllerAs: 'vm',
+					bindToController: true,
+					resolve:{
+						editID: function(){
+							return vm.edicionID;
+						}
+					}
+				});
+			};
+
+			vm.updateConcurso = function(item){
+				console.log($rootScope.edicionID);
+				//Obtiene la imagen carga en el elemento file del DOM
+				//var f = document.getElementById('file').files[0],
+				//r = new FileReader();
+
+				var fd = new FormData();
+			    //Take the first selected file
+			    //fd.append("file", files[0]);
+			    //fd.append("picture", file);
+			    fd.append("nombre", item.nombre);
+			    fd.append("fecha_inicio", item.fecha_inicio);
+			    fd.append("fecha_fin", item.fecha_fin);
+			    fd.append("url", item.url);
+			    fd.append("descripcion", item.descripcion);
+
+			    //File upload
+			    
+			    $http.patch(rutaAcceso + "/usuario/" + $rootScope.id_usuario+"/"+$rootScope.edicionID, fd, {
+			        withCredentials: false,
+			        headers: {'Content-Type': undefined},
+			        transformRequest: angular.identity,
+			        params : fd
+			    }).then(function(response) {
+		            $http.get(rutaAcceso+'/usuario/'+$rootScope.id_usuario).
+			        then(function(response) {
+			            vm.concursos  = response.data;
+			            $scope.$apply();
+			        },function(error){
+			        	alert('Could not complete request');
+			        });
+		        },function(error){
+		        	alert('Could not complete request');
+		        });
+
+			    $rootScope.modalInstance.close('a');
 			};
 
 			vm.irAVideos=function(item){
@@ -115,7 +159,7 @@
 				console.log('opening pop up');
 
 				$rootScope.modalInstance = $uibModal.open({
-					templateUrl: 'project_sources/concursos/nuevoconcurso.template.html',
+					templateUrl: 'project_sources/misconcursos/nuevoconcurso.template.html',
 					controller: 'MisConcursosController',
 					controllerAs: 'vm',
 					bindToController: true
