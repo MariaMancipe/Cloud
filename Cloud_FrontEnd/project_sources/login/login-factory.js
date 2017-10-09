@@ -13,13 +13,14 @@
 
 		function login( json, sucess, fail ){
 			///usuarios/:correo/:clave
-			$http.get(path_to_service+"/credenciales/"+json.correo+"/"+json.clave)
+			$http.get(config.baseURL+"/usuarios"+"/credenciales/"+json.correo+"/"+json.clave)
 			.then(function successCallback(response) {
 		    	//:v
 		    	reponse = response.data;
 		    	sucess(response.data.id);
 			  }, function errorCallback(response) {
 		    	console.log('Not logged');
+		    	fail();
 			  }); 
 		}
 

@@ -1,8 +1,9 @@
 (function() {
 
 	angular
-		.module( 'app', [ 'ngRoute', 
-				'ui.bootstrap',
+		.module( 'app', [ "ngRoute",
+			    "ngCookies",
+				"ui.bootstrap",
 				"ngSanitize",
 				"com.2fdevs.videogular",
 				"com.2fdevs.videogular.plugins.controls",

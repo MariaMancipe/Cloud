@@ -16,7 +16,8 @@
 			vm.nuevoconcurso.picture="";
 
 	        vm.actualizar = function(){
-	        	$http.get(rutaAcceso).
+
+	        	$http.get(rutaAcceso+'/usuario/'+$rootScope.id_usuario).
 		        then(function(response) {
 		            vm.concursos  = response.data;
 		        },function(error){
@@ -25,6 +26,7 @@
 	        }
 
 			vm.getConcursos = function(){
+				console.log('ID usuario loggeado: '+$rootScope.id_usuario)
 				vm.concursos = MisConcursosFactory.getConcursos($rootScope.id_usuario);
 			}
 
@@ -56,15 +58,18 @@
 			        headers: {'Content-Type': undefined},
 			        transformRequest: angular.identity,
 			        params : fd
-			    }).then(function successCallback(response) {
-			    	$http.get(rutaAcceso).
+			    }).then(function (response) {
+			    	$http.get(rutaAcceso+'/usuario/'+$rootScope.id_usuario).
 			        then(function(response) {
 			            vm.concursos  = response.data;
+			            $scope.$apply();
+			            console.log('refreshed');
 			        },function(error){
+			            console.log('Refresh error');
 			        	alert('Could not complete request');
 			        });
 			    	console.log('uploaded');
-				  }, function errorCallback(response) {
+				  }, function (error) {
 			    	console.log('Not uploaded');
 			  });
 			    $rootScope.modalInstance.close('a');
@@ -83,9 +88,9 @@
 			}
 			
 			vm.removerConcurso = function(concursoID){
-				$http.delete(path_to_service+'/'+concursoID)
+				$http.delete(path_to_service+"/usuario/" + $rootScope.id_usuario+'/'+concursoID)
 				.then(function(response) {
-		            $http.get(rutaAcceso).
+		            $http.get(rutaAcceso+'/usuario/'+$rootScope.id_usuario).
 			        then(function(response) {
 			            vm.concursos  = response.data;
 			        },function(error){
@@ -117,6 +122,7 @@
 				});
 
 			};
+		  vm.actualizar();
 
 		}
 	angular

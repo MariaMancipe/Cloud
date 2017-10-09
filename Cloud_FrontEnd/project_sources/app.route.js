@@ -1,7 +1,13 @@
 (function() {
 	angular
-		.module( 'app' , ['ui.bootstrap', 'ngRoute'])
-		.controller( 'MainController',['$scope','$rootScope', '$uibModal',  function($scope,$rootScope, $uibModal){
+		.module( 'app' , ['ui.bootstrap', 'ngRoute', 'ngCookies'])
+		.controller( 'MainController',['$scope','$rootScope', '$uibModal', '$cookies',  function($scope,$rootScope, $uibModal, $cookies){
+			if($cookies.getObject('globals')){
+				$rootScope.id_usuario = $cookies.getObject('globals').currentUser.idUsuario;
+				if($rootScope.id_usuario){
+					$scope.loggeado = true;
+				}
+			}
 
 			$scope.open = function () {
 				$rootScope.modalInstance = $uibModal.open({
@@ -11,12 +17,13 @@
 
 			$scope.close = function () {
 				$scope.loggeado = false;
+				$rootScope.globals = {};
+				$cookies.remove('globals');				
 			}
 		}] )
 		//MainController )
 		.config( config )
 		.constant('config', {
-
 			baseURL: 'http://52.6.65.14:9292'
 		});
 /*

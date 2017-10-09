@@ -23,6 +23,7 @@
 			$http.get(path_to_get + extension).
 	        then(function(response) {
 	            reponse = response.data;
+	            console.log('Mis concursos Factory: '+reponse);
 	        	return reponse;
 	        },function(error){
 	        	alert('Could not complete request');

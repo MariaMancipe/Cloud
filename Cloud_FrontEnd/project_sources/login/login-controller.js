@@ -1,6 +1,6 @@
 (function(){
 	
-		function LoginController($scope,$rootScope, LoginFactory, config){
+		function LoginController($scope,$rootScope, LoginFactory, config, $cookies){
 				console.log('opening pop up');
 
 			var vm = this;
@@ -24,27 +24,29 @@
 
 			vm.guardarId = function(dataDelPost)
 			{
-				//$rootScope.globals = {
-				//	currentUser:{
-				//		idUsuario:dataDelPost.id
-				//	}
-				//};
+				$rootScope.globals = {
+				currentUser:{
+					idUsuario:dataDelPost
+				}
+				};
 
-				//var cookiExp = new Date();
-				//cookieExp.setDate(cookieExp.getDate() + 7);
+				var cookieExp = new Date();
+				cookieExp.setDate(cookieExp.getDate() + 7);
 				//Las cookies duran 7 dias a menos que el usuario cierre sesion
-				//$cookies.putObject('globals', $rootScope.globals, {expires:cookieExp});
+				$cookies.putObject('globals', $rootScope.globals, {expires:cookieExp});
 				
 				//console.log("Hello");
 
 				//console.log($rootScope.id_usuario);
 				console.log(dataDelPost);
 				$rootScope.id_usuario = dataDelPost;
+				$rootScope.loggeado = true;	
 			}
 
 			vm.fallo = function()
 			{
 				//TODO que paso cuando muere
+				alert('No fue posible iniciar sesion.');
 			}
 
 			vm.nuevoUsuario = function(usuario){
@@ -62,6 +64,7 @@
 				vm.postJSON.clave = vm.password;
 
 				resuelve = LoginFactory.postUser( vm.postJSON, vm.guardarId, vm.fallo );
+				//$rootScope.id_usuario = usuario.id;
 				
 				
 				$rootScope.modalInstance.close('a');
@@ -69,12 +72,12 @@
 			};
 
 			vm.login = function(usuario){
-					$rootScope.loggeado = true;		
+
 					console.log(":v");			
 					vm.postJSON.correo = vm.email;
 					vm.postJSON.clave = vm.password;
 					var resuelve = LoginFactory.login( vm.postJSON, vm.guardarId, vm.fallo );
-					//console.log(resuelve);
+					
 				$rootScope.modalInstance.close('a');
 			};;
 
@@ -84,7 +87,7 @@
 		.module('app')
 		.controller('LoginController', LoginController);
 
-		LoginController.$inject = ['$scope', '$rootScope','LoginFactory', 'config'];
+		LoginController.$inject = ['$scope', '$rootScope','LoginFactory', 'config', '$cookies'];
 
 
 })();
