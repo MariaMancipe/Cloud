@@ -38,8 +38,7 @@
 		    	//:v
 		    	sucess(response.data);
 			  }, function errorCallback(response) {
-		    	console.log('Not uploaded');
-		    	console.log(response);
+			  	
 			  }); 
 		}
 

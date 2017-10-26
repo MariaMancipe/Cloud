@@ -24,7 +24,7 @@
 		//MainController )
 		.config( config )
 		.constant('config', {
-			baseURL: 'http://34.236.13.118'
+			baseURL: 'http://34.236.13.118:9292'
 		});
 /*
 	function MainController( $scope, $modal ) {

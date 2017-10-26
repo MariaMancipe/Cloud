@@ -24,6 +24,10 @@
 
 			vm.guardarId = function(dataDelPost)
 			{
+				$rootScope.id_usuario = dataDelPost.id;
+				console.log($rootScope.id_usuario);
+				$rootScope.loggeado = true;
+
 				$rootScope.globals = {
 				currentUser:{
 					idUsuario:dataDelPost
@@ -38,9 +42,30 @@
 				//console.log("Hello");
 
 				//console.log($rootScope.id_usuario);
-				console.log(dataDelPost);
+				
+			}
+
+			vm.guardarIdLog = function(dataDelPost)
+			{
 				$rootScope.id_usuario = dataDelPost;
-				$rootScope.loggeado = true;	
+				console.log($rootScope.id_usuario);
+				$rootScope.loggeado = true;
+
+				$rootScope.globals = {
+				currentUser:{
+					idUsuario:dataDelPost
+				}
+				};
+
+				var cookieExp = new Date();
+				cookieExp.setDate(cookieExp.getDate() + 7);
+				//Las cookies duran 7 dias a menos que el usuario cierre sesion
+				$cookies.putObject('globals', $rootScope.globals, {expires:cookieExp});
+				
+				//console.log("Hello");
+
+				//console.log($rootScope.id_usuario);
+				
 			}
 
 			vm.fallo = function()
@@ -76,7 +101,7 @@
 					console.log(":v");			
 					vm.postJSON.correo = vm.email;
 					vm.postJSON.clave = vm.password;
-					var resuelve = LoginFactory.login( vm.postJSON, vm.guardarId, vm.fallo );
+					var resuelve = LoginFactory.login( vm.postJSON, vm.guardarIdLog, vm.fallo );
 					
 				$rootScope.modalInstance.close('a');
 			};;

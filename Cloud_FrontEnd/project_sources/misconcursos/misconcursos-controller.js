@@ -156,7 +156,6 @@
 			};
 
 			vm.nuevoConcurso = function(){
-				console.log('opening pop up');
 
 				$rootScope.modalInstance = $uibModal.open({
 					templateUrl: 'project_sources/misconcursos/nuevoconcurso.template.html',

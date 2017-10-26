@@ -17,6 +17,7 @@
 			var vm = this;
 
 			var rutaAcceso = config.baseURL + "/videos";
+			vm.laIp = config.baseURL;
 
 			vm.idconcursoActual='';
 

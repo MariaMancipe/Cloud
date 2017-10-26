@@ -39,7 +39,7 @@
 			// Simple GET request example:
 			$http({
   			method: 'GET',
-  			url: rutaAcceso+"/concursos/"+idDelConcurso
+  			url: config.baseURL +"/concursos/"+idDelConcurso
 			}).then(function successCallback(response) {
     		metodoExito(response);
   			}, function errorCallback(response) {
@@ -52,7 +52,7 @@
 			var reponse = '';
 
 			
-			$http.get(rutaAcceso + "/videos/concurso/"+idDelConcurso).
+			$http.get(config.baseURL + "/videos/concurso/"+idDelConcurso).
 	        then(function(response) {
 	            reponse = response.data;
 	            metodoExito(response);

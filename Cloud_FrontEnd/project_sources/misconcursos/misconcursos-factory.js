@@ -7,7 +7,7 @@
 
 	function MisConcursosFactory( $http, $log, config){
 		path_to_service=config.baseURL+"/concursos";
-		path_to_get=config.baseURL+"/concursos/usuario/:";
+		path_to_get=config.baseURL+"/concursos/usuario/";
 
 		return {
 			getConcursos: getConcursos,
